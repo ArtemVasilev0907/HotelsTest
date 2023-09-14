@@ -1,0 +1,9 @@
+<resources>
+
+    <dimen name="baseMargin">20dp</dimen>
+    <dimen name="itemVerticalMargin">6dp</dimen>
+    <dimen name="cornerRadius">16dp</dimen>
+    <dimen name="secondCornerRadius">8dp</dimen>
+    <dimen name="buttonCornerRadius">16dp</dimen>
+
+</resources>

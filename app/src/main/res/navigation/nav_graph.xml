@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/navigation_hotel">
+
+
+    <fragment
+        android:id="@+id/navigation_hotel"
+        android:name="com.skydivers.hotelstest.ui.fragments.hotel.HotelFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_hotel">
+
+        <action
+            android:id="@+id/action_navigation_hotel_to_room"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"
+            app:destination="@id/navigation_room"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_room"
+        android:name="com.skydivers.hotelstest.ui.fragments.rooms.RoomFragment"
+        android:label="@string/title_room"
+        tools:layout="@layout/fragment_room">
+
+        <action
+            android:id="@+id/action_navigation_room_to_booking"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"
+            app:destination="@id/navigation_booking"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_booking"
+        android:name="com.skydivers.hotelstest.ui.fragments.booking.BookingFragment"
+        android:label="@string/title_booking"
+        tools:layout="@layout/fragment_booking">
+
+        <action
+            android:id="@+id/action_navigation_booking_to_paid"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"
+            app:destination="@id/navigation_paid"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_paid"
+        android:name="com.skydivers.hotelstest.ui.fragments.paid.PaidFragment"
+        android:label="@string/title_paid"
+        tools:layout="@layout/fragment_paid">
+
+        <action
+            android:id="@+id/action_navigation_paid_to_hotel"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"
+            app:destination="@id/navigation_hotel"/>
+    </fragment>
+</navigation>

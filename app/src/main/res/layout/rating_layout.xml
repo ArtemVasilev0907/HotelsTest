@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ratingLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rating_rounded_background"
+    android:layout_marginStart="@dimen/baseMargin"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/baseMargin"
+        android:src="@drawable/ic_baseline_star_24">
+
+    </ImageView>
+    <TextView
+        android:id="@+id/HotelRatingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:textColor="#FFA800"
+        android:textSize="16sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/HotelRatingDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="@dimen/baseMargin"
+        android:textColor="#FFA800"
+        android:textSize="16sp">
+    </TextView>
+
+
+</LinearLayout>

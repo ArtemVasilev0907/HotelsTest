@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Отель</string>
+    <string name="title_booking">Бронирование</string>
+    <string name="title_room">Номер</string>
+    <string name="title_paid">Заказ оплачен</string>
+    <string name="to_select_room">К выбору номера</string>
+    <string name="priceFromTitle">от</string>
+    <string name="super_btn_title">Супер!</string>
+    <string name="pay_btn_title">Оплатить</string>
+    <string name="select_room_btn_title">Выбрать номер</string>
+    <string name="about_hotel">Об отеле</string>
+    <string name="select_room">Выбрать номер</string>
+    <string name="about_room">Подробнее о номере</string>
+    <string name="phone_number">Телефон</string>
+    <string name="mail">Почта</string>
+    <string name="firstname">Имя</string>
+    <string name="lastname">Фамилия</string>
+    <string name="birth_day">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="passport">Номер загранпаспорта</string>
+    <string name="passport_end_date">Срок действия загранпаспорта</string>
+    <string name="bayer_information">Информация о покупателе</string>
+    <string name="tourist_info">Данные туриста</string>
+    <string name="confidential_information">Эти данные никому не передаются. После оплаты мы вышлем чек на указанный Вами номер и почту</string>
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="departure">Вылет из</string>
+    <string name="arrivalCountry">Страна, город</string>
+    <string name="tour_date">Даты</string>
+    <string name="nights">Кол-во ночей</string>
+    <string name="hotel">Отель</string>
+    <string name="room">Номер</string>
+    <string name="nutrition">Питание</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_charge">Топливный сбор</string>
+    <string name="service_charge">Сервисный сбор</string>
+    <string name="to_pay">К оплате</string>
+    <string name="your_order_is_accepted">Ваш заказ принят в работу</string>
+    <string name="confirmation_of_an_order">Подтверждение заказа № %1$d может занять некоторое время (от 1 часа до сутое).\nКак только мы получим ответ от туроператора, вам на почту придет уведомление</string>
+</resources>
