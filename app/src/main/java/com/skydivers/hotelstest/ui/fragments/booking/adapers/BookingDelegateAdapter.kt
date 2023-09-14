@@ -79,7 +79,7 @@ class BookingDelegateAdapter(private var onUserAction: ((BookingUserAction) -> U
                     touristListIsField = listOfTourists.toList().all { it }
                 }
                 Log.e(listOfTourists::class.simpleName, touristListIsField.toString())
-                if (buyer.checkInfoFilled() == touristListIsField ) {
+                if (buyer.checkInfoFilled() && touristListIsField) {
                     Log.e(this::class.simpleName, "Required fields is filled!")
                     onUserAction?.invoke(BookingUserAction.BuyTour)
                 } else {
