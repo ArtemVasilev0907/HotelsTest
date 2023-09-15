@@ -1,7 +1,6 @@
 package com.skydivers.hotelsdata.data.repository
 
 
-
 import android.util.Log
 import com.skydivers.data.retrofit.RetrofitInstance
 import com.skydivers.domain.DataState
@@ -23,8 +22,6 @@ class HotelsDataRepositoryImp :
     HotelsDataRepository {
 
 
-
-
     override suspend fun fetchHotelDataState(
     ): Flow<DataState<HotelsModelDomain>> =
         flow {
@@ -33,21 +30,21 @@ class HotelsDataRepositoryImp :
             .catch {
 
 
-                if (it is SocketTimeoutException){
+                if (it is SocketTimeoutException) {
                     emit(DataState.Error(code = 0, message = "Time out"))
-                }else
+                } else
+                    emit(DataState.Error(code = 0, message = it.message.orEmpty()))
+            }
+
+    override suspend fun fetchRoomsDataState(): Flow<DataState<RoomsModelDomain>> =
+        flow {
+            emit(fetchRoomsDataFromServer())
+        }.flowOn(Dispatchers.IO)
+            .catch {
                 emit(DataState.Error(code = 0, message = it.message.orEmpty()))
             }
 
-    override suspend fun fetchRoomsDataState(): Flow<DataState<RoomsModelDomain>>  =
-    flow {
-        emit(fetchRoomsDataFromServer())
-    }.flowOn(Dispatchers.IO)
-    .catch {
-        emit(DataState.Error(code = 0, message = it.message.orEmpty()))
-    }
-
-    override suspend fun fetchBookingDataState(): Flow<DataState<BookingModelDomain>>  =
+    override suspend fun fetchBookingDataState(): Flow<DataState<BookingModelDomain>> =
         flow {
             emit(fetchBookingDataFromServer())
         }.flowOn(Dispatchers.IO)
@@ -69,12 +66,13 @@ class HotelsDataRepositoryImp :
     private suspend fun fetchRoomsDataFromServer(): DataState<RoomsModelDomain> {
 
 
-        val result = withTimeout(60000){
+        val result = withTimeout(60000) {
             RetrofitInstance.api.fetchRoomsData()
         }
 
         return mapRoomsDataToDomain(response = result)
     }
+
     private suspend fun fetchBookingDataFromServer(): DataState<BookingModelDomain> {
 
 
@@ -106,14 +104,15 @@ class HotelsDataRepositoryImp :
                 response.errorBody()!!.close()
             }
         } catch (e: Exception) {
-            if (e is SocketTimeoutException){
+            if (e is SocketTimeoutException) {
                 dataState.emit(DataState.Error(code = 0, message = "Time out"))
             } else
-            dataState.emit(DataState.Error(message = e.message))
+                dataState.emit(DataState.Error(message = e.message))
         }
 
         return dataState.value
     }
+
     private suspend fun mapRoomsDataToDomain(
         response: Response<RoomsEntity>
     ): DataState<RoomsModelDomain> {
@@ -163,9 +162,6 @@ class HotelsDataRepositoryImp :
 
         return dataState.value
     }
-
-
-
 
 
 }

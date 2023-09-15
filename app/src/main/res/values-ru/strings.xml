@@ -36,5 +36,5 @@
     <string name="service_charge">Сервисный сбор</string>
     <string name="to_pay">К оплате</string>
     <string name="your_order_is_accepted">Ваш заказ принят в работу</string>
-    <string name="confirmation_of_an_order">Подтверждение заказа № %1$d может занять некоторое время (от 1 часа до сутое).\nКак только мы получим ответ от туроператора, вам на почту придет уведомление</string>
+    <string name="confirmation_of_an_order">Подтверждение заказа № %1$d может занять некоторое время (от 1 часа до суток).\nКак только мы получим ответ от туроператора, вам на почту придет уведомление</string>
 </resources>

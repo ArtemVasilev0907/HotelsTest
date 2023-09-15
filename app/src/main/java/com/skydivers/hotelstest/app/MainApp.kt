@@ -3,7 +3,7 @@ package com.skydivers.hotelstest.app
 import android.app.Application
 import com.skydivers.hotelstest.di.appModule
 import com.skydivers.hotelstest.di.dataModule
-import com.skydivers.locationru.di.domainModule
+import com.skydivers.hotelstest.di.domainModule
 import org.koin.core.context.startKoin
 
 import org.koin.android.ext.koin.androidContext

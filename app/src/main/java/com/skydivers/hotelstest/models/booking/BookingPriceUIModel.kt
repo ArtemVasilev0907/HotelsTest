@@ -4,9 +4,9 @@ import com.skydivers.domain.models.booking.BookingModelDomain
 import com.skydivers.hotelstest.models.BaseUIModel
 
 data class BookingPriceUIModel(
-    val tourPrice:Float,
-    val  serviceCharge:Float,
-    val fuelCharge:Float
+    var tourPrice:Float,
+    var serviceCharge:Float,
+    var fuelCharge:Float
 ):BaseUIModel{
     fun BookingModelDomain.mapToPresentation():BookingPriceUIModel{
         return BookingPriceUIModel(
@@ -22,4 +22,9 @@ data class BookingPriceUIModel(
     }
 
     override fun isFilled(): Boolean = true
+    fun multiple(number: Int) {
+        tourPrice *= number
+        serviceCharge *=number
+        fuelCharge *=number
+    }
 }

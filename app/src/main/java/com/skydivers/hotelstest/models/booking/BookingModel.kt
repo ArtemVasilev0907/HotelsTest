@@ -20,7 +20,7 @@ data class BookingModel(
     val tourDateStart: String,
     val tourDateStop: String,
     val tourPrice: Int,
-    var tourists: ArrayList<TouristUIModel> = ArrayList(),
+    var tourists: List<TouristUIModel> = listOf(),
     val buyerInfo: BuyerInfoUIModel = BuyerInfoUIModel(),
     val addTouristUIModel: AddTouristUIModel = AddTouristUIModel(),
     val bookingPriceUIModel: BookingPriceUIModel

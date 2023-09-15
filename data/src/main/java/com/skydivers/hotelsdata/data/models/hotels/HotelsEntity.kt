@@ -25,8 +25,8 @@ data class HotelsEntity(
     @SerializedName("about_the_hotel")
     val aboutTheHotel: AboutTheHotelEntity
 
-):Entity{
-    override fun mapToDomain() : HotelsModelDomain {
+) : Entity {
+    override fun mapToDomain(): HotelsModelDomain {
         return HotelsModelDomain(
             id = id,
             name = name,
@@ -38,6 +38,7 @@ data class HotelsEntity(
             imageUrls = imageUrls,
             aboutTheHotel = aboutTheHotel.mapToDomain()
         )
-            }
+    }
+
 
 }

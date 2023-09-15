@@ -18,15 +18,17 @@ data class RoomEntity(
     val price: Int,
     @SerializedName("price_per")
     val pricePer: String
-): Entity {
+) : Entity {
     override fun mapToDomain(): RoomModelDomain {
         return RoomModelDomain(
             id = id,
             imageUrls = imageUrls,
             name = name,
-            peculiarities =peculiarities,
+            peculiarities = peculiarities,
             price = price,
             pricePer = pricePer
         )
     }
+
+
 }

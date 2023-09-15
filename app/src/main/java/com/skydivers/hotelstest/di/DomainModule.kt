@@ -1,12 +1,10 @@
-package com.skydivers.locationru.di
+package com.skydivers.hotelstest.di
 
 
 
 
 
-import com.skydivers.domain.usecases.GetBookingDataUseCase
-import com.skydivers.domain.usecases.GetHotelsDataUseCase
-import com.skydivers.domain.usecases.GetRoomsDataUseCase
+import com.skydivers.domain.usecases.*
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -21,6 +19,8 @@ val domainModule = module {
     factory <GetBookingDataUseCase>{
         GetBookingDataUseCase(hotelsDataRepository = get())
     }
+
+
 
 
 

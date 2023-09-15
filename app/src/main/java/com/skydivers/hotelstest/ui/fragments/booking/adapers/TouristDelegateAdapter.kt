@@ -7,10 +7,10 @@ import com.skydivers.hotelstest.databinding.TouristItemBinding
 import com.skydivers.hotelstest.models.booking.TouristUIModel
 import com.skydivers.hotelstest.ui.action.BookingUserAction
 import com.skydivers.hotelstest.ui.design.delegateAdaper.ViewBindingDelegateAdapter
+import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.afterDateChanged
 import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.afterTextChanged
 import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.checkRequires
 import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.checkThis
-import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.afterDateChanged
 
 
 class TouristDelegateAdapter(private var onUserAction: ((BookingUserAction) -> Unit)? = null) :

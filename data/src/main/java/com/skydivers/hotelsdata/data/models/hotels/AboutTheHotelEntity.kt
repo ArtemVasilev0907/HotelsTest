@@ -10,11 +10,13 @@ data class AboutTheHotelEntity(
     val description: String,
     @SerializedName("peculiarities")
     val peculiarities: List<String>
-) :Entity{
+) : Entity {
     override fun mapToDomain(): AboutTheHotelModelDomain {
-    return AboutTheHotelModelDomain(
-        description = description,
-        peculiarities = peculiarities
-    )
+        return AboutTheHotelModelDomain(
+            description = description,
+            peculiarities = peculiarities
+        )
     }
+
+
 }

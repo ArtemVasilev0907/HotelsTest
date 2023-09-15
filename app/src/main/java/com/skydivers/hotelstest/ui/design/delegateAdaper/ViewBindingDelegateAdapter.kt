@@ -1,7 +1,6 @@
 package com.skydivers.hotelstest.ui.design.delegateAdaper
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -10,7 +9,10 @@ abstract class ViewBindingDelegateAdapter<T : Any, V : ViewBinding>(
     private val viewBindingInflater: (LayoutInflater, parent: ViewGroup, attachToParent: Boolean) -> V
 ) : DelegateAdapter {
 
-    final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    final override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val viewBinding = viewBindingInflater.invoke(layoutInflater, parent, false)
         viewBinding.onCreated()
@@ -22,7 +24,11 @@ abstract class ViewBindingDelegateAdapter<T : Any, V : ViewBinding>(
     open fun V.onCreated() {}
 
     @Suppress("UNCHECKED_CAST")
-    final override fun onBindViewHolder(holder: RecyclerView.ViewHolder, items: List<Any>, position: Int) {
+    final override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        items: List<Any>,
+        position: Int
+    ) {
         holder as ViewBindingHolder<V>
         holder.viewBinding.onBind(items[position] as T)
     }
@@ -49,12 +55,12 @@ abstract class ViewBindingDelegateAdapter<T : Any, V : ViewBinding>(
     }
 
     @Suppress("UNCHECKED_CAST")
-    final override fun onAttachedToWindow(holder: RecyclerView.ViewHolder)
-        = (holder as ViewBindingHolder<V>).viewBinding.onAttachedToWindow()
+    final override fun onAttachedToWindow(holder: RecyclerView.ViewHolder) =
+        (holder as ViewBindingHolder<V>).viewBinding.onAttachedToWindow()
 
     @Suppress("UNCHECKED_CAST")
-    final override fun onDetachedFromWindow(holder: RecyclerView.ViewHolder)
-        = (holder as ViewBindingHolder<V>).viewBinding.onDetachedFromWindow()
+    final override fun onDetachedFromWindow(holder: RecyclerView.ViewHolder) =
+        (holder as ViewBindingHolder<V>).viewBinding.onDetachedFromWindow()
 
     open fun V.onAttachedToWindow() {}
     open fun V.onDetachedFromWindow() {}

@@ -19,15 +19,16 @@ import kotlinx.coroutines.launch
 
 
 class BookingViewModel(
-    val getBookingDataUseCase: GetBookingDataUseCase
-) : ViewModel() {
+    val getBookingDataUseCase: GetBookingDataUseCase,
+    ) : ViewModel() {
+
+
     private val _bookingUiState = MutableStateFlow(
-        BookingUiState.State(
-        )
+        BookingUiState.State()
     )
 
 
-    val booking = _bookingUiState.stateIn(
+    val bookingUiState = _bookingUiState.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = BookingUiState.State()
@@ -53,9 +54,7 @@ class BookingViewModel(
                         it.copy(
                             isSuccess = true,
                             result = dataState.data.mapToPresentation()
-
                         )
-
                     }
                 }
                 is DataState.Error -> {
@@ -64,9 +63,7 @@ class BookingViewModel(
                     _bookingUiState.update {
                         it.copy(
                             isSuccess = false,
-
                             )
-
                     }
                 }
                 is DataState.Loading -> {
@@ -91,7 +88,6 @@ class BookingViewModel(
         Log.e(this::class.simpleName, error)
         _errorEvents.value = this::class.simpleName?.let { ErrorUIModel(it, error) }
 
-
     }
 
 
@@ -100,38 +96,30 @@ class BookingViewModel(
             when (action) {
                 is BookingUserAction.AddTourist -> {
 
+                    val tourists = bookingUiState.value.result?.tourists?.toMutableList()
+                    tourists?.add(TouristUIModel().setIdFromList(tourists.toMutableList()))
+                    val dataState = bookingUiState.value
+                    dataState.result?.bookingPriceUIModel?.multiple(tourists?.size!!)
+                    if (tourists != null) {
+                        dataState.result?.tourists = tourists.toList()
+                    }
+                    _bookingUiState.emit(dataState)
                 }
                 is BookingUserAction.DeleteTourist -> {
 
                 }
                 is BookingUserAction.SaveTourist -> {
-                    with(action.touristModel) {
-                        Log.e(this::class.simpleName, "isFilled:${isFilled()}")
-                        Log.e(this::class.simpleName, this.toString())
-                    }
-
 
                 }
                 is BookingUserAction.CheckPay -> {
 
                 }
-                is BookingUserAction.BuyTour ->{
+                is BookingUserAction.BuyTour -> {
                     _navigateTo.value = Screen.Paid
                 }
             }
         }
 
-    }
-
-    private fun addTourist() {
-        _bookingUiState.getAndUpdate {
-            val result = it.result
-            result?.tourists?.add(TouristUIModel().setIdFromList(result.tourists))
-            it.copy(
-                isSuccess = true,
-                result = result
-            )
-        }
     }
 
 

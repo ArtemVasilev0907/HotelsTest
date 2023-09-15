@@ -8,10 +8,12 @@ import com.skydivers.hotelsdata.data.models.Entity
 data class RoomsEntity(
     @SerializedName("rooms")
     val rooms: List<RoomEntity>
-): Entity {
+) : Entity {
     override fun mapToDomain(): RoomsModelDomain {
         return RoomsModelDomain(
             rooms = rooms.map { it.mapToDomain() }
         )
     }
+
+
 }
