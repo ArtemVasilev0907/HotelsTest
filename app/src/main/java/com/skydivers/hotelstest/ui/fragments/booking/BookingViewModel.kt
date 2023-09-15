@@ -99,7 +99,9 @@ class BookingViewModel(
                     val tourists = bookingUiState.value.result?.tourists?.toMutableList()
                     tourists?.add(TouristUIModel().setIdFromList(tourists.toMutableList()))
                     val dataState = bookingUiState.value
+
                     dataState.result?.bookingPriceUIModel?.multiple(tourists?.size!!)
+                    Log.e("Price",  "${dataState.result?.bookingPriceUIModel}")
                     if (tourists != null) {
                         dataState.result?.tourists = tourists.toList()
                     }

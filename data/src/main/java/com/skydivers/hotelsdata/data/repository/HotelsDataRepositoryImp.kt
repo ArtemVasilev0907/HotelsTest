@@ -5,9 +5,11 @@ import android.util.Log
 import com.skydivers.data.retrofit.RetrofitInstance
 import com.skydivers.domain.DataState
 import com.skydivers.domain.HotelsDataRepository
+import com.skydivers.domain.models.ModelDomain
 import com.skydivers.domain.models.booking.BookingModelDomain
 import com.skydivers.domain.models.hotels.HotelsModelDomain
 import com.skydivers.domain.models.rooms.RoomsModelDomain
+import com.skydivers.hotelsdata.data.models.Entity
 import com.skydivers.hotelsdata.data.models.booking.BookingEntity
 import com.skydivers.hotelsdata.data.models.hotels.HotelsEntity
 import com.skydivers.hotelsdata.data.models.rooms.RoomsEntity
@@ -83,6 +85,8 @@ class HotelsDataRepositoryImp :
         Log.e(this::class.simpleName, "Start connection")
         return mapBookingDataToDomain(response = RetrofitInstance.api.fetchBookingData())
     }
+
+
 
     private suspend fun mapHotelDataToDomain(
         response: Response<HotelsEntity>

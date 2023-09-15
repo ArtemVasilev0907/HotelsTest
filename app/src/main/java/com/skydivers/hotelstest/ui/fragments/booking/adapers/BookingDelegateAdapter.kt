@@ -8,9 +8,7 @@ import com.skydivers.hotelstest.models.booking.BookingModel
 import com.skydivers.hotelstest.ui.action.BookingUserAction
 import com.skydivers.hotelstest.ui.design.delegateAdaper.CompositeDelegateAdapter
 import com.skydivers.hotelstest.ui.design.delegateAdaper.ViewBindingDelegateAdapter
-import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.bind
-import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.bindData
-import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.checkInfoFilled
+import com.skydivers.hotelstest.ui.fragments.booking.adapers.bindingExt.*
 
 
 class BookingDelegateAdapter(private var onUserAction: ((BookingUserAction) -> Unit)? = null) :
@@ -34,18 +32,18 @@ class BookingDelegateAdapter(private var onUserAction: ((BookingUserAction) -> U
 
         addTourist.bindData(
             item = item.addTouristUIModel,
-
             onUserAction = {
 
                 onUserAction?.invoke(it)
                 adapter.swapData(item.tourists)
+                bookingPrice.calculateData(
+                    item.bookingPriceUIModel)
 
             }
 
         )
 
-        bookingPrice.bindData(
-            item.bookingPriceUIModel,
+        bookingPrice.bindData(item.bookingPriceUIModel,
             onUserAction = {
                 val list = adapter.findAdapters(touristDelegateAdapter).map {
                     it
@@ -72,6 +70,10 @@ class BookingDelegateAdapter(private var onUserAction: ((BookingUserAction) -> U
                     Log.e(this::class.simpleName, "Required fields Not filled!")
                 }
             })
+
+
+
+
 
 
     }
