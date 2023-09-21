@@ -10,7 +10,7 @@ class ChipsGridView constructor(
     private val chips: List<String>
 ) {
 
-    private val chipsRecycler = view.findViewById<RecyclerView>(R.id.chipsGridRecyclerView)
+    private val chipsRecycler = view.findViewById<RecyclerView>(R.id.rvChipsGrid)
     fun init() {
         chipsRecycler.adapter = ChipsAdapter(chips)
 

@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">HotelsTest</string>
+    <string name="title_booking">Booking</string>
+    <string name="title_room">Room</string>
+    <string name="title_paid">Paid</string>
+    <string name="to_select_room">To select room</string>
+    <string name="select_room_btn_title">Select room</string>
+    <string name="pay_btn_title">Pay</string>
+    <string name="super_btn_title">Super!</string>
+    <string name="priceFromTitle">from</string>
+    <string name="about_hotel">About Hotel</string>
+    <string name="select_room">select room</string>
+    <string name="about_room">About room</string>
+    <string name="phone_number">Phone number</string>
+    <string name="mail">Mail</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">Last name</string>
+    <string name="birth_day">Birth day</string>
+    <string name="citizenship">Citizenship</string>
+    <string name="passport">Passport</string>
+    <string name="passport_end_date">Passport end date</string>
+    <string name="bayer_information">Bayer information</string>
+    <string name="tourist_info">Tourist info</string>
+    <string name="confidential_information">Confidential information</string>
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="departure">Departure</string>
+    <string name="arrivalCountry">Location</string>
+    <string name="tour_date">Tour date</string>
+    <string name="nights">Nights</string>
+    <string name="hotel">Hotel</string>
+    <string name="room">Room</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="tour">Tour</string>
+    <string name="fuel_charge">Fuel charge</string>
+    <string name="service_charge">Service charge</string>
+    <string name="to_pay">To pay</string>
+    <string name="your_order_is_accepted">Your order is accepted</string>
+    <string name="confirmation_of_an_order">Confirmation of an order %1$d</string>
+    <string name="tour_date_value" translatable="false">%1s - %2s</string>
+    <string name="tour_nights_number">%1d nights</string>
+    <string name="tour_currency_value">%1d $</string>
+    <string name="minimal_price">from %1d $</string>
+    <string name="save_tourist">Save tourist</string>
+    <string name="delete_tourist">Delete tourist from list</string>
+</resources>

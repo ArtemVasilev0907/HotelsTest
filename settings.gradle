@@ -16,3 +16,4 @@ rootProject.name = "HotelsTest"
 include ':app'
 include ':domain'
 include ':data'
+include ':booking'

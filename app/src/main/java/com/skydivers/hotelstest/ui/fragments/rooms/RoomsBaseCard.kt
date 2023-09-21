@@ -19,6 +19,7 @@ class RoomsBaseCard constructor(
     private val parent: ViewGroup = view.findViewById<LinearLayout>(R.id.roundedCardLayout)
     private val rl  = view.findViewById<LinearLayout>(R.id.roundedCardLayout).removeAllViews()
     private var onBooking: ((value: Int) -> Unit)? = null
+    val context = parent.context
 
     fun addImageCarousel(imagesUrls: List<String>): RoomsBaseCard {
 
@@ -32,7 +33,7 @@ class RoomsBaseCard constructor(
             view,
             imagesUrls
         )
-            .addProgressBar()
+            .addProgressBar(parent)
             .onChangePosition { position ->
                 Log.i(this::class.simpleName, "Position:${position}")
 

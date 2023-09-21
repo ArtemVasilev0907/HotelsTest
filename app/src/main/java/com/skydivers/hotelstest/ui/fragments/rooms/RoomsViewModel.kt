@@ -1,80 +1,41 @@
 package com.skydivers.hotelstest.ui.fragments.rooms
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.skydivers.domain.DataState
 import com.skydivers.domain.usecases.GetRoomsDataUseCase
+import com.skydivers.hotelstest.BaseViewModel
+import com.skydivers.hotelstest.models.ErrorUIModel
+import com.skydivers.hotelstest.models.UiState
 import com.skydivers.hotelstest.models.rooms.mapToPresentation
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class RoomsViewModel(
     private val getRoomsDataUseCase: GetRoomsDataUseCase,
-) : ViewModel() {
+) : BaseViewModel() {
 
-    private val _roomsUiState = MutableStateFlow(
-       RoomUiState.State(
-
-        )
-    )
-
-
-    val roomsUiState = _roomsUiState.stateIn(
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState = _uiState.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = RoomUiState.State()
-    )
+        initialValue = UiState.Loading)
 
-     suspend fun fetchData() {
-
-         getRoomsDataUseCase().flowOn(Dispatchers.IO).stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = DataState.Loading()
-        ).onEach { dataState ->
-            when (dataState) {
-                is DataState.Success -> {
-                    _roomsUiState.update {
-                        it.copy(
-                            isSuccess = true,
-                            result = dataState.data.mapToPresentation()
-
-                        )
-
-                    }
+    suspend fun fetchData() {
+        getRoomsDataUseCase().fetch(
+            onSuccess = {success->
+                _uiState.update {
+                    UiState.Success(success.mapToPresentation())
                 }
-                is DataState.Error -> {
-                    _roomsUiState.update {
-                        it.copy(
-                            isSuccess = false,
+            },
+            onLoading = {
 
-                        )
-
-                    }
-                }
-                is DataState.Loading -> {
-                    _roomsUiState.update {
-                        it.copy(
-                            isSuccess = false,
-                        )
-                    }
-                }
-
+            },
+            onError = {error->
+                UiState.Error(ErrorUIModel(error.code.toString(), error.message.orEmpty()) )
             }
-
-        }.catch {
-            onPrepareError(it)
-        }.launchIn(viewModelScope)
+        )
     }
 
-
-    private fun onPrepareError(throwable: Throwable) {
-        viewModelScope.launch {
-            val error = throwable.message.orEmpty()
-            Log.e(this::class.simpleName, error)
-
-        }
-    }
 }
+

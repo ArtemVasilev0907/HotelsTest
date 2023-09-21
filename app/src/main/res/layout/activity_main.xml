@@ -7,20 +7,17 @@
     android:orientation="vertical"
     tools:context="com.skydivers.hotelstest.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/customToolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="0dp"
+            android:background="@color/colorPrimary"
+            app:navigationIcon="@drawable/baseline_keyboard_arrow_left"
             app:titleCentered="true" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_container"

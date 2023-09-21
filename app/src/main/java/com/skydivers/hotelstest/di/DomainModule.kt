@@ -16,9 +16,7 @@ val domainModule = module {
         GetRoomsDataUseCase(hotelsDataRepository = get())
     }
 
-    factory <GetBookingDataUseCase>{
-        GetBookingDataUseCase(hotelsDataRepository = get())
-    }
+
 
 
 

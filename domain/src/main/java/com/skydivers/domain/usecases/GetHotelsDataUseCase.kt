@@ -12,4 +12,5 @@ class GetHotelsDataUseCase (private val hotelsDataRepository: HotelsDataReposito
         return hotelsDataRepository.fetchHotelDataState()
 
     }
+
 }

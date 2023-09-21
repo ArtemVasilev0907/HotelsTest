@@ -22,13 +22,13 @@ class CirclesProgressBarView(
             ).inflate(R.layout.circle_view, circles, true)
 
             val childAt: View = circles.getChildAt(i)
-            val layoutParams = childAt.layoutParams as LinearLayout.LayoutParams
+           // val layoutParams = childAt.layoutParams as LinearLayout.LayoutParams
             if (i == position) {
                 childAt.setBackgroundResource(R.drawable.circle_active)
             } else {
                 childAt.setBackgroundResource(R.drawable.circle_default)
             }
-            childAt.layoutParams = layoutParams
+           // childAt.layoutParams = layoutParams
         }
     }
 

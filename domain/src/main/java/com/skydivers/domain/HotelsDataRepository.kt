@@ -13,7 +13,7 @@ interface HotelsDataRepository {
 
     suspend fun fetchHotelDataState(): Flow<DataState<HotelsModelDomain>>
     suspend fun fetchRoomsDataState(): Flow<DataState<RoomsModelDomain>>
-    suspend fun fetchBookingDataState(): Flow<DataState<BookingModelDomain>>
+
 
 
 }

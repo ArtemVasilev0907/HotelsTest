@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.skydivers.hotelstest.R
-import com.skydivers.hotelstest.models.ErrorUIModel
+import com.skydivers.hotelstest.databinding.FragmentHotelBinding
+import com.skydivers.hotelstest.models.UiState
+import com.skydivers.hotelstest.models.hotel.HotelsUiModel
 import com.skydivers.hotelstest.ui.navigation.Screen
 import com.skydivers.hotelstest.ui.navigation.navigate
 import kotlinx.coroutines.flow.launchIn
@@ -39,53 +41,66 @@ class HotelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_hotel, container, false)
-
-//        view.findViewById<Button>(R.id.toRoomButton).setOnClickListener {
-//            navigate(Screen.HotelRoom, Screen.Hotel)
-//        }
-
-        hotelViewModel.hotelUiState.onEach { hotelsUiState ->
-
-            when (hotelsUiState.isSuccess) {
-                true -> {
-                    hotelsUiState.result?.let { aboutHotel ->
-                        HotelBaseCard( view)
-                            .addImageCarousel(imagesUrls = aboutHotel.imageUrls)
-                            .addHotelRating(
-                                rating = aboutHotel.rating,
-                                ratingDescription = aboutHotel.ratingName
-                            )
-                            .addTitle(title = aboutHotel.name, address = aboutHotel.address)
-                            .addPrice(
-                                minimalPrice = "от ${aboutHotel.minimalPrice} ₽",
-                                priceForIt = aboutHotel.priceForIt
-                            )
-                        AboutHotelCard(view)
-                            .addTitle( getString(R.string.about_hotel))
-                            .addChips(aboutHotel.aboutTheHotel.peculiarities)
-                            .addButtons()
-                            .addDescription(aboutHotel.aboutTheHotel.description)
-                        ButtonCard(view).addButton(resources.getString(R.string.to_select_room))
-                            .onButtonClick {
-                                val hotelNameBundle = Bundle()
-                                hotelNameBundle.putString("hotelName", aboutHotel.name)
-                                navigate(Screen.HotelRoom, Screen.Hotel,hotelNameBundle )
-                            }
+        val fragmentHotel = FragmentHotelBinding.inflate(inflater, container, false)
 
 
-                    }
+
+        hotelViewModel.uiState.onEach { state ->
+
+            when (state) {
+                is UiState.Success -> {
+                    onSuccessUiState(state,fragmentHotel )
                 }
-                else -> {
-                    when(hotelsUiState.error){
-                        is ErrorUIModel ->{
-                            Log.e(hotelsUiState.error!!.tag, hotelsUiState.error!!.message)
-                        }
-                    }
+                is UiState.Error -> {
+                    onErrorUiState(state)
+                }
+
+                is UiState.Loading -> {
+
                 }
             }
         }.launchIn(lifecycleScope)
-        return view
+        return fragmentHotel.root
+    }
+
+    private fun onSuccessUiState(state: UiState.Success, fragmentHotel: FragmentHotelBinding){
+        state.data.let { hotel ->
+            when(hotel){
+                is HotelsUiModel->{
+                    HotelBaseCard( fragmentHotel.root)
+                        .addImageCarousel(imagesUrls = hotel.imageUrls)
+                        .addHotelRating(
+                            rating = hotel.rating,
+                            ratingDescription = hotel.ratingName
+                        )
+                        .addTitle(title = hotel.name, address = hotel.address)
+                        .addPrice(
+                            minimalPrice = getString(R.string.minimal_price,hotel.minimalPrice),
+                            priceForIt = hotel.priceForIt
+                        )
+                    AboutHotelCard(fragmentHotel.root)
+                        .addTitle( getString(R.string.about_hotel))
+                        .addChips(hotel.aboutTheHotel.peculiarities)
+                        .addButtons()
+                        .addDescription(hotel.aboutTheHotel.description)
+                    ButtonCard(fragmentHotel.root).addButton(resources.getString(R.string.to_select_room))
+                        .onButtonClick {
+                            val hotelNameBundle = Bundle()
+                            hotelNameBundle.putString("hotelName", hotel.name)
+                            navigate(Screen.HotelRoom, Screen.Hotel,hotelNameBundle )
+                        }
+
+
+                }
+
+                else -> {}
+            }
+
+
+        }
+    }
+    private fun onErrorUiState(state: UiState.Error) {
+
     }
 
 

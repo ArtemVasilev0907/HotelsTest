@@ -1,6 +1,7 @@
 package com.skydivers.hotelstest.ui.design.imageCarousel
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -65,8 +66,8 @@ class ImageCarouselView constructor(
         return this
     }
 
-    fun addProgressBar(): ImageCarouselView {
-        circlesProgressBarView = CirclesProgressBarView( this.view)
+    fun addProgressBar(view:ViewGroup): ImageCarouselView {
+        circlesProgressBarView = CirclesProgressBarView( view)
         circlesProgressBarView!!.setSize(imageUrls.size)
         return this
 

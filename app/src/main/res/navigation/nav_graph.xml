@@ -38,9 +38,9 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_booking"
-        android:name="com.skydivers.hotelstest.ui.fragments.booking.BookingFragment"
+        android:name="com.skydivers.hotelstest.booking.BookingFragment"
         android:label="@string/title_booking"
-        tools:layout="@layout/fragment_booking">
+        tools:layout="com.skydivers.booking.R.layout.fragment_booking">
 
         <action
             android:id="@+id/action_navigation_booking_to_paid"

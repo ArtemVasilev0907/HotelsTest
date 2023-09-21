@@ -8,11 +8,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_marginBottom="@dimen/baseMargin"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-
             android:background="@drawable/block_rounded_background"
             android:orientation="vertical">
                 <TableLayout
@@ -103,7 +100,8 @@
                                     android:layout_marginBottom="12dp"
                                     android:textAlignment="textEnd"
                                     android:textColor="#0D72FF"
-                                    android:textSize="20sp"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
 
                         </TableRow>
                 </TableLayout>

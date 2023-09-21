@@ -16,7 +16,7 @@ class RoomsListView constructor(
 
     private val parent: ViewGroup = view.findViewById<LinearLayout>(R.id.roomsBaseLayout)
     private val rl =  view.findViewById<LinearLayout>(R.id.roomsBaseLayout).removeAllViews()
-    private var onBooking: ((value: Int) -> Unit)? = null
+    private var onSelectRoom: ((value: Int) -> Unit)? = null
 
     fun show() {
         LayoutInflater.from(parent.context
@@ -27,8 +27,8 @@ class RoomsListView constructor(
 
         roomsAdapter.setOnItemClickListener(object :
             RoomsAdapter.OnItemClickListener {
-            override fun onBooking(bookingId: Int) {
-                onBooking?.invoke(bookingId)
+            override fun onSelectRoom(bookingId: Int) {
+                onSelectRoom?.invoke(bookingId)
             }
 
 
@@ -37,7 +37,7 @@ class RoomsListView constructor(
     }
 
     fun onBooking(onBooking:(value:Int)->Unit):RoomsListView{
-        this.onBooking = onBooking
+        this.onSelectRoom = onBooking
         return this
     }
 

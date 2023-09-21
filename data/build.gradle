@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.skydivers.hotelsdata.data'
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         minSdk 23
-        targetSdk 32
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -34,25 +34,23 @@ dependencies {
     implementation project (path:':domain')
 
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-
-    implementation 'androidx.datastore:datastore-core:1.0.0'
-
-    def kotlin_version ='1.7.20'
-
-    implementation 'org.jetbrains.kotlin:kotlin-reflect:'+kotlin_version
+    //Kotlin
+    implementation(Deps.coreKtx)
+    implementation(Deps.androidx_datastore)
+    implementation(Deps.kotlin_reflect)
+    implementation(Deps.kotlinx_serialization)
 
 
-    def   retrofitVersion ='2.9.0'
-    implementation 'com.squareup.retrofit2:retrofit:'+ retrofitVersion
-    implementation 'com.squareup.retrofit2:converter-gson:'+ retrofitVersion
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
-    //RxJava3-Retrofit adapter
-    //implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
-    //Google play service
-    implementation 'com.google.android.gms:play-services-location:21.0.1'
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+
+
+    //Retrofit
+    implementation (Deps.retrofit)
+    implementation (Deps.retrofit_gson)
+    implementation(Deps.okhttp3_logging)
+
+    //
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

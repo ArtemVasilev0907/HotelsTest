@@ -1,6 +1,5 @@
-package com.skydivers.data.retrofit
+package com.skydivers.hotelsdata.data.retrofit
 
-import com.skydivers.hotelsdata.data.retrofit.ServerHotelsStorage
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response

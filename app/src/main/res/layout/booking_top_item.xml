@@ -28,10 +28,10 @@
 
         </LinearLayout>
 
-        <include layout="@layout/booking_block_item"
-            android:id="@+id/bookingBlock_layout"/>
+        <include layout="@layout/tour_block_item"
+            android:id="@+id/tourBlock"/>
 
-        <include layout="@layout/buyer_item"
+        <include layout="@layout/booking_buyer_item"
                 android:id="@+id/buyer"/>
 
        <androidx.recyclerview.widget.RecyclerView
@@ -44,8 +44,8 @@
        </androidx.recyclerview.widget.RecyclerView>
         <include layout="@layout/add_tourist_item"
             android:id="@+id/addTourist"/>
-    <include layout="@layout/booking_price_item"
-        android:id="@+id/bookingPrice"/>
+    <include layout="@layout/booking_cost_item"
+        android:id="@+id/booking_cost"/>
 
 
 

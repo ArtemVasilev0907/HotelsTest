@@ -6,11 +6,7 @@
 
 
     <corners
-        android:topLeftRadius="@dimen/secondCornerRadius"
-        android:topRightRadius="@dimen/secondCornerRadius"
-
-        android:bottomLeftRadius="@dimen/secondCornerRadius"
-        android:bottomRightRadius="@dimen/secondCornerRadius"
+        android:radius="@dimen/ratingRadius"
         />
 
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@drawable/block_rounded_background"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/baseMargin">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="0"
+                    android:text="@string/tour"
+                    android:layout_marginEnd="@dimen/baseMargin"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvTourPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:textAlignment="textEnd"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="0"
+                    android:text="@string/fuel_charge"
+                    android:layout_marginEnd="@dimen/baseMargin"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvFuelCharge"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginBottom="12dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="0"
+                    android:layout_marginEnd="@dimen/baseMargin"
+                    android:text="@string/service_charge"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvServiceCharge"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="0"
+                    android:layout_marginEnd="@dimen/baseMargin"
+                    android:text="@string/to_pay"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvToPay"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="#0D72FF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+        </TableLayout>
+
+        <android.widget.Button
+            android:id="@+id/btnPay"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/baseMargin"
+            android:background="@drawable/blue_rounded_button"
+            android:elevation="0dp"
+            android:text="@string/to_select_room"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
