@@ -40,14 +40,10 @@ dependencies {
     implementation(Deps.kotlin_reflect)
     implementation(Deps.kotlinx_serialization)
 
-
-
-
-
     //Retrofit
-    implementation (Deps.retrofit)
-    implementation (Deps.retrofit_gson)
-    implementation(Deps.okhttp3_logging)
+    implementation RetrofitImplementation.retrofit
+    implementation (RetrofitImplementation.retrofit_gson)
+    implementation(RetrofitImplementation.okhttp3_logging)
 
     //
 

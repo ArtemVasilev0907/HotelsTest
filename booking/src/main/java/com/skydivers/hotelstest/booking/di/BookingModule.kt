@@ -5,5 +5,4 @@ import org.koin.dsl.module
 val bookingModule = module {
     includes(repositoryModule, useCaseModule, viewModelModule)
 
-
 }

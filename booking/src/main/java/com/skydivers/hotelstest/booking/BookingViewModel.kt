@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydivers.hotelstest.booking.action.BookingUserAction
 import com.skydivers.hotelstest.booking.model.TouristUIModel
+import com.skydivers.hotelstest.booking.navigation.BookingNavigator
+import com.skydivers.hotelstest.booking.navigation.BookingNavigator2
 import com.skydivers.hotelstest.booking.usecases.GetBookingDataUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,8 +16,11 @@ import kotlinx.coroutines.launch
 
 
 internal class BookingViewModel(
-    val getBookingDataUseCase: GetBookingDataUseCase
+    val getBookingDataUseCase: GetBookingDataUseCase,
+    private val bookingNavigator: BookingNavigator,
+    private val bookingNavigator2: BookingNavigator2
 ) : ViewModel() {
+
 
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
@@ -118,7 +123,7 @@ internal class BookingViewModel(
 
                 is BookingUserAction.SaveTourist -> {
 
-
+                    bookingNavigator2.toPayFragment2()
                 }
 
                 is BookingUserAction.CheckPay -> {
@@ -126,7 +131,7 @@ internal class BookingViewModel(
                 }
 
                 is BookingUserAction.BuyTour -> {
-                    // _navigateTo.value = Screen.Paid
+                    bookingNavigator.toPayFragment()
                 }
 
             }

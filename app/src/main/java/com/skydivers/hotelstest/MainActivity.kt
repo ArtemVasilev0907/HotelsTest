@@ -3,7 +3,6 @@ package com.skydivers.hotelstest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,25 +10,26 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.skydivers.hotelstest.databinding.ActivityMainBinding
-
-
-
-
+import com.skydivers.hotelstest.ui.navigation.MainNavControllerProvider
+import org.koin.android.ext.android.inject
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private  var _binding: ActivityMainBinding?=null
+    private val binding:ActivityMainBinding
+        get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var toolbar: MaterialToolbar
+    private val mainNavControllerProvider: MainNavControllerProvider by inject()
 
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         toolbar = findViewById(R.id.customToolBar)
         setSupportActionBar(toolbar)
@@ -67,12 +67,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onPostCreate(savedInstanceState, persistentState)
-
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainNavControllerProvider.bindNavController(navController)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mainNavControllerProvider.unBindNavController()
     }
 }

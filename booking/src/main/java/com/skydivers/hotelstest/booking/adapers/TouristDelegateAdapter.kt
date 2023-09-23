@@ -136,6 +136,7 @@ internal class TouristDelegateAdapter(var onUserAction: ((BookingUserAction) -> 
 
                     R.id.save -> {
                         item.saveIfFilled()
+
                         return true
                     }
 
