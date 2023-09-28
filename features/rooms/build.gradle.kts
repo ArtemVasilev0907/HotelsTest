@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.skydivers.hotestest.rooms"
+    namespace = "com.skydivers.hotestest.features.rooms"
     compileSdk = 34
 
     defaultConfig {
