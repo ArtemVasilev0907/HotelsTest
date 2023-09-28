@@ -5,9 +5,9 @@
     tools:context="com.skydivers.hotelstest.booking.ui.BookingFragment">
     <data>
         <import type="android.view.View"/>
-        <variable name="state" type="com.skydivers.hotelstest.booking.feature.UiState"/>
-        <variable name="loading" type="com.skydivers.hotelstest.booking.feature.UiState.Loading"/>
-        <variable name="error" type="com.skydivers.hotelstest.booking.feature.UiState.Error"/>
+        <variable name="state" type="com.skydivers.hotelstest.core.common.UiState"/>
+        <variable name="loading" type="com.skydivers.hotelstest.core.common.UiState.Loading"/>
+        <variable name="error" type="com.skydivers.hotelstest.core.common.UiState.Error"/>
         <variable name="viewmodel" type="com.skydivers.hotelstest.booking.ui.BookingViewModel" />
     </data>
 <FrameLayout

@@ -1,14 +1,15 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.skydivers.hotelstest.booking.domain"
-    compileSdk = ProjectProps.compileSdk
+    namespace = "com.skydivers.hotestest.rooms"
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = ProjectProps.minSdk
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -33,11 +34,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":booking:model"))
-    implementation(project(":booking:feature"))
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.koin.core)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit4)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)

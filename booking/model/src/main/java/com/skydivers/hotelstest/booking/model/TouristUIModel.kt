@@ -1,6 +1,5 @@
 package com.skydivers.hotelstest.booking.model
 
-import android.util.Log
 import com.google.gson.annotations.SerializedName
 
 
@@ -26,11 +25,9 @@ data class TouristUIModel(
 
 ) {
     private fun digitsToText(digit: Int): String = convertToText(digit.toLong())
-    fun addNewFromList(modelList: List<TouristUIModel>): TouristUIModel {
-        var newId = 1
-        for (i in modelList.indices) {
-            newId++
-        }
+    fun addNewFromList(tourists: MutableList<TouristUIModel>): TouristUIModel {
+
+        val newId = tourists.size +1
         val title = digitsToText(newId)
         return TouristUIModel(id = newId, title = title)
     }
@@ -40,7 +37,6 @@ data class TouristUIModel(
         newId++
         id = newId
         this.title = digitsToText(newId)
-        Log.e(this::class.simpleName, "id $id, title $title")
     }
 
     fun isFilled(): Boolean {

@@ -16,7 +16,7 @@ internal val viewModelModule = module {
     viewModel {
         BookingViewModel(
             getBookingDataUseCase = get(),
-            addTourist = get(),
+            addTouristUseCase = get(),
             deleteTouristUseCase = get(),
             bookingNavigator = get()
         )

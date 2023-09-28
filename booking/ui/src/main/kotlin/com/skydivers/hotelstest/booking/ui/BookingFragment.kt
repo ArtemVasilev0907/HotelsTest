@@ -1,16 +1,18 @@
 package com.skydivers.hotelstest.booking.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.skydivers.hotelstest.booking.feature.UiState
+import com.skydivers.hotelstest.booking.model.BookingModel
 import com.skydivers.hotelstest.booking.ui.adapers.BookingDelegateAdapter
 import com.skydivers.hotelstest.booking.ui.databinding.FragmentBookingBinding
 import com.skydivers.hotelstest.booking.ui.delegateAdaper.CompositeDelegateAdapter
 import com.skydivers.hotelstest.booking.ui.di.bookingModule
+import com.skydivers.hotelstest.core.common.UiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -44,7 +46,8 @@ internal class BookingFragment : Fragment() {
 
 
 
-        lifecycleScope.launch {
+       lifecycleScope.launch {
+
             bookingViewModel.fetchBookingData()
         }
 
@@ -55,7 +58,6 @@ internal class BookingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val view = inflater.inflate(R.layout.fragment_booking, container, false)
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
         _binding!!.lifecycleOwner = this
         lifecycleScope.launch {
@@ -63,7 +65,7 @@ internal class BookingFragment : Fragment() {
                 _binding!!.state = state
                 _binding!!.viewmodel = bookingViewModel
                 when (state) {
-                    is UiState.Success -> {
+                    is UiState.Success<BookingModel> -> {
                         onSuccessUiState(state)
                     }
 
@@ -75,13 +77,15 @@ internal class BookingFragment : Fragment() {
                     is UiState.Loading -> {
                         _binding!!.loading = state
                     }
+
+                    else -> {}
                 }
             }
         }
         return binding.root
     }
 
-    private fun onSuccessUiState(state: UiState.Success) {
+    private fun onSuccessUiState(state: UiState.Success<BookingModel>) {
         state.data.let { booking ->
             with(binding) {
                 RecyclerView.adapter = adapter
@@ -92,7 +96,7 @@ internal class BookingFragment : Fragment() {
     }
 
     private fun onErrorUiState(state: UiState.Error) {
-        state.errorModel.logging()
+        Log.e(state::class.simpleName, state.exception.message.orEmpty())
     }
 
 

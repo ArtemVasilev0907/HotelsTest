@@ -27,25 +27,26 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
 
 
         touristDelegateAdapter.onUserAction = {
+            val index = it as BookingUserAction.DeleteTourist
             onUserAction?.invoke(it)
-            adapter.swapDataAndRefresh(item.tourists)
+            adapter.swapDataAndRefresh(index.touristId,item.tourists!!)
             bookingCost.calculateData(
-                item.bookingPriceUIModel
+                item.bookingPriceUIModel!!
             )
         }
 
 
         tourBlock.bindData(item)
 
-        buyer.bindData(item.buyerInfo)
+        buyer.bindData(item.buyerInfo!!)
 
         addTourist.bindData(
             onUserAction = {
 
                 onUserAction?.invoke(it)
-                adapter.swapDataAndRefresh(item.tourists)
+                adapter.swapDataAndRefresh(item.tourists!!.size,item.tourists!!)
                 bookingCost.calculateData(
-                    item.bookingPriceUIModel
+                    item.bookingPriceUIModel!!
                 )
 
             }
@@ -54,7 +55,7 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
 
 
 
-        bookingCost.bindData(item.bookingPriceUIModel,
+        bookingCost.bindData(item.bookingPriceUIModel!!,
             onUserAction = {
                 val list = adapter.findAdapters(touristDelegateAdapter).map {
                     it
@@ -81,10 +82,13 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
 
     }
 
-    private fun CompositeDelegateAdapter.swapDataAndRefresh(data: List<Any>) {
+    private fun CompositeDelegateAdapter.swapDataAndRefresh(fromIndex:Int, data: List<Any>) {
 
             swapData(data)
-            notifyItemChanged(data.lastIndex)
+            data.mapIndexed { index, any ->
+                notifyItemChanged(index , any )
+            }
+
 
     }
 

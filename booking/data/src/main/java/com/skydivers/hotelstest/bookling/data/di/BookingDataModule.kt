@@ -1,4 +1,4 @@
-package com.skydivers.hotelstest.bookling.di
+package com.skydivers.hotelstest.bookling.data.di
 
 
 

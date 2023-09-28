@@ -45,6 +45,7 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
     implementation(project(":booking:domain"))
     implementation(project(":booking:model"))
     implementation(project(":booking:feature"))
@@ -60,7 +61,7 @@ dependencies {
 
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.koin)
-    implementation(project(mapOf("path" to ":core")))
+
 
 
 

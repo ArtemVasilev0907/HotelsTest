@@ -1,10 +1,10 @@
 package com.skydivers.hotelstest.booking.ui.adapers
 
 
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import com.skydivers.hotelstest.booking.model.TouristUIModel
 import com.skydivers.hotelstest.booking.ui.R
 import com.skydivers.hotelstest.booking.ui.repositories.BookingUserAction
 import com.skydivers.hotelstest.booking.ui.adapers.bindingExt.afterDateChanged
@@ -21,13 +21,17 @@ internal class TouristDelegateAdapter(var onUserAction: ((BookingUserAction) -> 
 
     private var bindingItems: TouristItemBinding? = null
 
-    override fun TouristItemBinding.onBind(item: com.skydivers.hotelstest.booking.model.TouristUIModel) {
+    override fun TouristItemBinding.onBind(item: TouristUIModel) {
 
         bindingItems = this
 
         title.text = item.title + " турист"
         image.setImageResource(R.drawable.arrow_right_blue)
-        checkCollapsedItem(this, item.isCollapsed)
+
+
+                checkCollapsedItem(this, item.isCollapsed)
+
+
         image.setOnClickListener {
             item.isCollapsed = !item.isCollapsed
             checkCollapsedItem(this, item.isCollapsed)
@@ -106,17 +110,17 @@ internal class TouristDelegateAdapter(var onUserAction: ((BookingUserAction) -> 
             itemBinding.image.rotation = 90f
             itemBinding.allFieldsLayout.visibility = View.GONE
         }
-        Log.e("CheckCollapsedItem", collapsed.toString())
+
     }
 
-    private fun com.skydivers.hotelstest.booking.model.TouristUIModel.saveIfFilled() {
+    private fun TouristUIModel.saveIfFilled() {
 
         if (this.isFilled()) {
-            onUserAction?.invoke(com.skydivers.hotelstest.booking.ui.repositories.BookingUserAction.SaveTourist(this))
+            onUserAction?.invoke(BookingUserAction.SaveTourist(this))
         }
     }
 
-    private fun onOptionsMenuClick(view: View?, item: com.skydivers.hotelstest.booking.model.TouristUIModel) {
+    private fun onOptionsMenuClick(view: View?, item: TouristUIModel) {
         val popupMenu = PopupMenu(view!!.context, view)
         // add the menu
         popupMenu.inflate(R.menu.user_menu)
@@ -125,10 +129,6 @@ internal class TouristDelegateAdapter(var onUserAction: ((BookingUserAction) -> 
                 when (menuItem?.itemId) {
                     R.id.delete -> {
 
-                        Log.e(
-                            this@TouristDelegateAdapter::class.simpleName,
-                            "delete tourist ${item.id}"
-                        )
                         onUserAction?.invoke(BookingUserAction.DeleteTourist(item.id))
                         return true
                     }

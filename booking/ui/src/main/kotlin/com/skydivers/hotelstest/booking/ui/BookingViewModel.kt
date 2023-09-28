@@ -4,11 +4,12 @@ package com.skydivers.hotelstest.booking.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydivers.hotelstest.booking.ui.repositories.BookingUserAction
-import com.skydivers.hotelstest.booking.domain.usecases.AddTourist
+import com.skydivers.hotelstest.booking.domain.usecases.AddTouristUseCase
 import com.skydivers.hotelstest.booking.domain.usecases.DeleteTouristUseCase
 import com.skydivers.hotelstest.booking.domain.usecases.GetBookingDataUseCase
-import com.skydivers.hotelstest.booking.feature.UiState
 import com.skydivers.hotelstest.booking.feature.navigation.BookingNavigator
+import com.skydivers.hotelstest.booking.model.BookingModel
+import com.skydivers.hotelstest.core.common.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collectLatest
@@ -18,13 +19,13 @@ import kotlinx.coroutines.launch
 
 internal class BookingViewModel(
     val getBookingDataUseCase: GetBookingDataUseCase,
-    val addTourist: AddTourist,
+    val addTouristUseCase: AddTouristUseCase,
     val deleteTouristUseCase: DeleteTouristUseCase,
     private val bookingNavigator: BookingNavigator
 ) : ViewModel() {
 
 
-    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState<BookingModel>>(UiState.Loading)
     val uiState = _uiState.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
@@ -43,11 +44,14 @@ internal class BookingViewModel(
 
     fun onUserAction(action: BookingUserAction) {
         viewModelScope.launch {
+
+
+
             when (action) {
                 is BookingUserAction.AddTourist -> {
                     when (val state = uiState.value) {
                         is UiState.Success -> {
-                            _uiState.emit(addTourist(state))
+                            _uiState.emit(addTouristUseCase(state))
                         }
 
                         else -> {}
@@ -55,13 +59,17 @@ internal class BookingViewModel(
                 }
 
                 is BookingUserAction.DeleteTourist -> {
-                    when (val state = uiState.value) {
-                        is UiState.Success -> {
-                            _uiState.emit(deleteTouristUseCase(state, action.touristId))
-                        }
 
-                        else -> {}
-                    }
+                            when (val state = uiState.value) {
+                                is UiState.Success -> {
+                                    _uiState.emit(deleteTouristUseCase(state, action.touristId))
+                                }
+
+                                else -> {}
+                            }
+
+
+
                 }
 
                 is BookingUserAction.SaveTourist -> {
@@ -77,6 +85,7 @@ internal class BookingViewModel(
                 }
 
             }
+
 
         }
 
