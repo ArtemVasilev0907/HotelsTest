@@ -12,17 +12,17 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/booking" />
-            <option value="$PROJECT_DIR$/booking/data" />
-            <option value="$PROJECT_DIR$/booking/domain" />
-            <option value="$PROJECT_DIR$/booking/feature" />
-            <option value="$PROJECT_DIR$/booking/model" />
-            <option value="$PROJECT_DIR$/booking/ui" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/booking" />
+            <option value="$PROJECT_DIR$/features/booking/data" />
+            <option value="$PROJECT_DIR$/features/booking/domain" />
+            <option value="$PROJECT_DIR$/features/booking/feature" />
+            <option value="$PROJECT_DIR$/features/booking/model" />
+            <option value="$PROJECT_DIR$/features/booking/ui" />
             <option value="$PROJECT_DIR$/features/rooms" />
             <option value="$PROJECT_DIR$/retrofit" />
           </set>
