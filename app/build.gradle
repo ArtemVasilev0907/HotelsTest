@@ -1,18 +1,21 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 android {
     namespace 'com.skydivers.hotelstest'
-    compileSdk 34
+
 
     defaultConfig {
-        applicationId "com.skydivers.hotelstest"
-        minSdk 23
-        targetSdk 34
+        applicationId ProjectProps.applicationId
+        minSdk ProjectProps.minSdk
+        targetSdk ProjectProps.targetSdk
         versionCode 1
         versionName "1.0"
+        compileSdk ProjectProps.compileSdk
+        buildToolsVersion '33.0.1'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -20,6 +23,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,42 +43,45 @@ android {
         enabled = true
     }
 
-    buildToolsVersion '33.0.1'
+    dynamicFeatures  =[':booking']
 }
 
 dependencies {
     implementation project (path:':domain')
     implementation project (path:':data')
-    implementation project (path:':booking')
+    implementation project(path: ':core')
 
-    implementation Deps.coreKtx
-    implementation Deps.appCompat
-    implementation Deps.activityKtx
-    implementation Deps.material
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation LifecycleImplementation.ktx_livedata
-    implementation LifecycleImplementation.ktx_viewmodel
-    implementation LifecycleImplementation.androidx_lifecycle_ext
+    implementation project(path: ':retrofit')
 
-    implementation Deps.kotlinx_coroutines
-    
 
-    implementation NavigationImplementation.navigation_fragment_ktx
-    implementation NavigationImplementation.navigation_ui_ktx
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.activity.ktx
+    implementation libs.material
+
+    implementation libs.bundles.lifecycle
+
+
+    implementation libs.kotlinx.coroutines.core
+
+
+
+    implementation libs.bundles.navigationKtx
+    implementation libs.navigation.dynamic.features.fragment
+    implementation libs.androidx.swiperefreshlayout
 
     // Coil
-    implementation Deps.coil
+    implementation libs.coil.kt
 
     //koin for kotlin
 
-    implementation  KoinImplemetation.koin_core
-    implementation KoinImplemetation.koin_android
+    implementation  libs.bundles.koin
+
 
     //koin testing
-    testImplementation KoinImplemetation.koin_test
+    testImplementation libs.koin.test
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation libs.junit4
+    androidTestImplementation libs.junit
+    androidTestImplementation libs.androidx.test.espresso.core
 }

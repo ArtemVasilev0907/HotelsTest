@@ -16,4 +16,5 @@ data class AboutTheHotelEntity(
         peculiarities = peculiarities
     )
     }
+
 }

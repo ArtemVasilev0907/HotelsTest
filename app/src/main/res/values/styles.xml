@@ -31,6 +31,7 @@
         <item name="android:homeAsUpIndicator">@drawable/baseline_keyboard_arrow_left</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
+
     </style>
 
     <style name="carouselImageCornerRadius" parent="">

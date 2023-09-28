@@ -1,4 +1,6 @@
-object Verison{
+import org.gradle.api.artifacts.dsl.DependencyHandler
+
+object Verison {
     const val appcompat_version = "1.6.1"
 
     //kotlin core
@@ -14,10 +16,10 @@ object Verison{
     const val lifecycle_version = "2.6.2"
 
     //Coroutines
-    const val coroutine_version ="1.7.3"
+    const val coroutine_version = "1.7.3"
 
     //Serialization
-    const val serialization_version ="1.6.0"
+    const val serialization_version = "1.6.0"
 
     //navigation
     const val nav_version = "2.7.2"
@@ -31,7 +33,8 @@ object Verison{
     //koin for kotlin
     const val koin_version = "3.5.0"
 }
-object Deps{
+
+object Deps {
     const val androidPlugin = "com.android.tools.build:gradle:8.1.1"
 
     const val appCompat = "androidx.appcompat:appcompat:${Verison.appcompat_version}"
@@ -46,9 +49,11 @@ object Deps{
 
     const val material = "com.google.android.material:material:${Verison.material_version}"
 
-    const val kotlinx_coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Verison.coroutine_version}"
+    const val kotlinx_coroutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Verison.coroutine_version}"
 
-    const val kotlinx_serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Verison.serialization_version}"
+    const val kotlinx_serialization =
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:${Verison.serialization_version}"
 
 
     val androidx_swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
@@ -63,33 +68,73 @@ object Deps{
     var junit = "junit:junit:4.13.2"
 }
 
-object LifecycleImplementation{
+object LifecycleImplementation {
 
-    const val ktx_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Verison.lifecycle_version}"
+    const val ktx_livedata =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Verison.lifecycle_version}"
 
-    const val ktx_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Verison.lifecycle_version}"
+    const val ktx_viewmodel =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Verison.lifecycle_version}"
 
     const val androidx_lifecycle_ext = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 }
 
-object KoinImplemetation{
+object KoinImplemetation {
     //koin for kotlin
     var koin_core = "io.insert-koin:koin-core:${Verison.koin_version}"
     var koin_android = "io.insert-koin:koin-android:${Verison.koin_version}"
+
     //koin testing
     var koin_test = "io.insert-koin:koin-test:${Verison.koin_version}"
 }
 
-object NavigationImplementation{
+object NavigationImplementation {
     //Navigation fragment
-    const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Verison.nav_version}"
+    const val navigation_fragment_ktx =
+        "androidx.navigation:navigation-fragment-ktx:${Verison.nav_version}"
+
     //Navigation ui
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Verison.nav_version}"
 }
 
-object RetrofitImplementation{
+object RetrofitImplementation {
     //Retrofit
     val retrofit = "com.squareup.retrofit2:retrofit:${Verison.retrofit_version}"
     val retrofit_gson = "com.squareup.retrofit2:converter-gson:${Verison.retrofit_version}"
     val okhttp3_logging = "com.squareup.okhttp3:logging-interceptor:4.10.0"
+}
+
+fun DependencyHandler.retrofit() {
+
+    implementation(RetrofitImplementation.retrofit)
+    implementation(RetrofitImplementation.retrofit_gson)
+    implementation(RetrofitImplementation.okhttp3_logging)
+}
+
+fun DependencyHandler.navigation() {
+    implementation(NavigationImplementation.navigation_fragment_ktx)
+    implementation(NavigationImplementation.navigation_ui_ktx)
+}
+
+fun DependencyHandler.lifecycle() {
+    implementation(LifecycleImplementation.ktx_livedata)
+    implementation(LifecycleImplementation.ktx_viewmodel)
+    implementation(LifecycleImplementation.androidx_lifecycle_ext)
+}
+
+fun DependencyHandler.koin() {
+    implementation(KoinImplemetation.koin_core)
+    implementation(KoinImplemetation.koin_android)
+
+}
+
+object ProjectProps {
+
+
+    const val minSdk = 23
+    const val compileSdk = 34
+    const val targetSdk = 34
+    const val applicationId = "com.skydivers.hoteltest"
+    const val buildToolsVersion = "33.0.1"
+
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.skydivers.hotelstest.booking.ui.BookingFragment">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="state" type="com.skydivers.hotelstest.booking.feature.UiState"/>
+        <variable name="loading" type="com.skydivers.hotelstest.booking.feature.UiState.Loading"/>
+        <variable name="error" type="com.skydivers.hotelstest.booking.feature.UiState.Error"/>
+        <variable name="viewmodel" type="com.skydivers.hotelstest.booking.ui.BookingViewModel" />
+    </data>
+<FrameLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="@{state == loading ?  View.VISIBLE : View.GONE}"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tvErrorLoadingMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/blue"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="@{state == error ?  View.VISIBLE : View.GONE}"
+        android:text="@string/something_wrong_withe_connection"
+        android:onClick="@{() -> viewmodel.fetchBookingData()}"
+
+        tools:text="Something wrong withe connection"
+        tools:visibility="visible">
+
+    </TextView>
+
+
+</FrameLayout>
+</layout>

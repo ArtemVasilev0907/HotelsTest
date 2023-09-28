@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-
-
-
         toolbar.setupWithNavController(
             navController,
             appBarConfiguration
@@ -59,11 +56,7 @@ class MainActivity : AppCompatActivity() {
 
                 toolbar.elevation = 0f
 
-
-
         }
-
-
 
     }
 
@@ -79,6 +72,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        mainNavControllerProvider.unBindNavController()
+       // mainNavControllerProvider.unBindNavController()
     }
 }

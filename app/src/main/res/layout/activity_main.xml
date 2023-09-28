@@ -14,14 +14,15 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:navigationIcon="@drawable/baseline_keyboard_arrow_left"
-            app:titleCentered="true" />
+            android:navigationIcon="@drawable/baseline_keyboard_arrow_left"
+            app:titleCentered="true"
+            />
 
 
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:name="androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

@@ -36,20 +36,25 @@
             app:popEnterAnim="@anim/nav_slide_in_left"
             app:destination="@id/navigation_booking"/>
     </fragment>
-    <fragment
-        android:id="@+id/navigation_booking"
-        android:name="com.skydivers.hotelstest.booking.BookingFragment"
-        android:label="@string/title_booking"
-        tools:layout="com.skydivers.booking.R.layout.fragment_booking">
 
-        <action
-            android:id="@+id/action_navigation_booking_to_paid"
-            app:enterAnim="@anim/nav_slide_in_right"
-            app:exitAnim="@anim/nav_slide_out_left"
-            app:popExitAnim="@anim/nav_slide_out_right"
-            app:popEnterAnim="@anim/nav_slide_in_left"
-            app:destination="@id/navigation_paid"/>
-    </fragment>
+        <fragment
+            app:moduleName="booking"
+            android:id="@+id/navigation_booking"
+            android:name="com.skydivers.hotelstest.booking.ui.BookingFragment"
+            android:label="@string/title_booking"
+            tools:layout="com.skydivers.booking.R.layout.fragment_booking">
+
+            <action
+                android:id="@+id/action_navigation_booking_to_paid"
+                app:enterAnim="@anim/nav_slide_in_right"
+                app:exitAnim="@anim/nav_slide_out_left"
+                app:popExitAnim="@anim/nav_slide_out_right"
+                app:popEnterAnim="@anim/nav_slide_in_left"
+                app:destination="@id/navigation_paid"/>
+        </fragment>
+
+
+
 
     <fragment
         android:id="@+id/navigation_paid"

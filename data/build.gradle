@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.skydivers.hotelsdata.data'
-    compileSdk 34
+    compileSdk ProjectProps.compileSdk
 
     defaultConfig {
-        minSdk 23
-        targetSdk 34
+        minSdk ProjectProps.minSdk
+        targetSdk ProjectProps.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,6 +32,7 @@ android {
 
 dependencies {
     implementation project (path:':domain')
+    implementation project (path:':core')
 
 
     //Kotlin

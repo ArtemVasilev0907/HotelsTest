@@ -1,6 +1,7 @@
 package com.skydivers.hotelstest.ui.navigation
 
 
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.navigation.NavController
 
 
