@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="@dimen/baseMargin"
+        android:background="@drawable/block_rounded_background"
+        android:orientation="vertical"
+
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <include
+            android:id="@+id/ratingLayout"
+            layout="@layout/rating_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMargin"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tvHotelName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMargin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/baseMargin"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvHotelAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMargin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/baseMargin"
+            android:textColor="#0D72FF"
+            android:textSize="18sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/tourBlock"
+        layout="@layout/tour_block_item" />
+
+    <include
+        android:id="@+id/buyer"
+        layout="@layout/booking_buyer_item" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tourist_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/addTourist"
+        layout="@layout/add_tourist_item" />
+
+    <include
+        android:id="@+id/booking_cost"
+        layout="@layout/booking_cost_item" />
+
+
+</LinearLayout>
