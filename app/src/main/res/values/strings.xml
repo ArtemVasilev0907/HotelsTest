@@ -38,7 +38,7 @@
     <string name="confirmation_of_an_order">Confirmation of an order %1$d</string>
     <string name="tour_date_value" translatable="false">%1s - %2s</string>
     <string name="tour_nights_number">%1d nights</string>
-    <string name="tour_currency_value" >%1d $</string>
+    <string name="tour_currency_value">%1d $</string>
     <string name="minimal_price">from %1d $</string>
     <string name="save_tourist">Save tourist</string>
     <string name="delete_tourist">Delete tourist from list</string>

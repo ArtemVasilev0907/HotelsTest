@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.skydivers.hotelstest.R
 
 
+
 class ImageCarouselView constructor(
     private val view: View,
     private val imageUrls: List<String>

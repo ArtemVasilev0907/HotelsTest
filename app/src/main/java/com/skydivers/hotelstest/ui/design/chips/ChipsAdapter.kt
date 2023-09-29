@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.skydivers.hotelstest.R
 
 
+
 class ChipsAdapter(
     private val chips: List<String>
 ) : RecyclerView.Adapter<ChipsAdapter.ChipsViewHolder>() {

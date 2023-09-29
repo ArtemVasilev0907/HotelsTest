@@ -3,12 +3,12 @@ package com.skydivers.hotelstest.ui.design.buttonList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.skydivers.hotelstest.R
+
 
 class ButtonsAdapter(
     private val buttons: List<ButtonModel>

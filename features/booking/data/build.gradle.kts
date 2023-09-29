@@ -39,7 +39,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":features:booking:domain"))
     implementation(project(":features:booking:model"))
-    implementation(project(":features:booking:feature"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.android)

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.skydivers.hotelstest.R
 
 
+
 class ChipsGridView constructor(
     view: View,
     private val chips: List<String>

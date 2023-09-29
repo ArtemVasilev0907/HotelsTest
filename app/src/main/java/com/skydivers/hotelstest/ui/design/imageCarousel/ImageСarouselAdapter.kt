@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.net.toUri
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.skydivers.hotelstest.R
-import com.skydivers.hotelstest.ui.fragments.hotel.AboutHotelCard
+
 
 class ImageCarouselAdapter(
     private val imageURL: List<String>

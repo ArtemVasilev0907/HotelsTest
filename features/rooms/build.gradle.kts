@@ -1,18 +1,18 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.library")
+    id("com.android.dynamic-feature")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.skydivers.hotestest.features.rooms"
-    compileSdk = 34
+    namespace = "com.skydivers.hotelstest.features.rooms"
+    compileSdk = ProjectProps.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = ProjectProps.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+
     }
 
     buildTypes {
@@ -35,6 +35,9 @@ android {
 
 dependencies {
 
+
+    implementation (project(":app"))
+    api(project(":features:rooms:presentation"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

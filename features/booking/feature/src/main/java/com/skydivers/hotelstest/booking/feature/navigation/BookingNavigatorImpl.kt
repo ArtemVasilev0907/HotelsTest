@@ -1,10 +1,10 @@
 package com.skydivers.hotelstest.booking.feature.navigation
 
-import com.skydivers.hotelstest.core.navigation.MainBookingNavigator
+import com.skydivers.hotelstest.core.navigation.CoreBookingNavigator
 
 
-class BookingNavigatorImpl(private val mainBookingNavigator: MainBookingNavigator):BookingNavigator {
+class BookingNavigatorImpl(private val coreBookingNavigator: CoreBookingNavigator):BookingNavigator {
     override fun toPayFragment() {
-        mainBookingNavigator.toPayFragment()
+        coreBookingNavigator.toPayFragment()
     }
 }

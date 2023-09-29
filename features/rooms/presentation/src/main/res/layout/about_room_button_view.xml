@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/aboutRoomButtonLayout"
+    android:layout_width="wrap_content"
+    android:layout_weight="0"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/baseMargin"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/lightblue_button_background"
+    android:orientation="horizontal">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/buttonTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMargin"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="@dimen/baseMargin"
+            android:textColor="#0D72FF"
+            android:text="@string/about_room"
+            android:textSize="16sp">
+
+        </TextView>
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/rightImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        android:layout_gravity="center_vertical|end"
+        android:background="@drawable/arrow_right_blue"
+
+        >
+    </ImageView>
+
+</LinearLayout>
