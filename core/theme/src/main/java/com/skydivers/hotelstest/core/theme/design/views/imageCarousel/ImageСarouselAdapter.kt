@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import com.skydivers.hotelstest.core.theme.design.views.extensions.loadUrl
 import com.skydivers.theme.R
 
 
@@ -25,7 +24,7 @@ class ImageCarouselAdapter(
     }
 
     class ImageCarouselHolder(  itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val mId = R.id.ivCarousel
+
         val image: ImageView = itemView.findViewById(R.id.ivCarousel)
 
 
@@ -39,7 +38,8 @@ class ImageCarouselAdapter(
 
 
     override fun onBindViewHolder(holder: ImageCarouselHolder, position: Int) = with(holder) {
-        bindImage(image, imageURL[position])
+
+        image.loadUrl(imageURL[position])
         image.setOnClickListener {
             onItemClickListener?.let {
 
@@ -52,12 +52,6 @@ class ImageCarouselAdapter(
 
     override fun getItemCount() = imageURL.size
 
-    // @BindingAdapter("imageUrl")
-    private fun bindImage(imgView: ImageView, imgUrl: String?) {
-        imgUrl?.let {
-            val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-            imgView.load(imgUri)
-        }
-    }
+
 
 }

@@ -4,7 +4,6 @@ package com.skydivers.hotelstest.di
 import com.skydivers.hotelstest.core.navigation.CoreBookingNavigator
 import com.skydivers.hotelstest.core.navigation.CoreRoomsNavigator
 import com.skydivers.hotelstest.ui.fragments.hotel.HotelViewModel
-import com.skydivers.hotelstest.ui.fragments.roomss.RoomsViewModel
 
 import com.skydivers.hotelstest.ui.navigation.MainBookingNavigatorImpl
 
@@ -38,11 +37,7 @@ val appModule = module {
         )
     }
 
-    viewModel<RoomsViewModel> {
-        RoomsViewModel(
-            getRoomsDataUseCase = get()
-        )
-    }
+
 
 
 }

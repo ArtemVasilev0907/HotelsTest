@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.skydivers.hotelstest.R
+import com.skydivers.hotelstest.core.theme.design.views.imageCarousel.ImageCarouselView
 import com.skydivers.hotelstest.databinding.HotelNameLayoutBinding
-import com.skydivers.hotelstest.databinding.ImageCarouselLayoutBinding
+
 import com.skydivers.hotelstest.databinding.PriceLayoutBinding
 import com.skydivers.hotelstest.databinding.RatingLayoutBinding
-import com.skydivers.hotelstest.ui.design.imageCarousel.ImageCarouselView
+
 
 class HotelBaseCard constructor(
     private val view: View
 ) {
 
     private val parent: ViewGroup = view.findViewById<LinearLayout>(R.id.baseCardLayout)
-    val layoutInflater = LayoutInflater.from(parent.context)!!
+    private val layoutInflater = LayoutInflater.from(parent.context)!!
     private val rl  = view.findViewById<LinearLayout>(R.id.baseCardLayout).removeAllViews()
 
 
@@ -25,9 +26,6 @@ class HotelBaseCard constructor(
 
     fun addImageCarousel(imagesUrls: List<String>): HotelBaseCard {
 
-
-
-        ImageCarouselLayoutBinding.inflate(layoutInflater, parent, true)
 
 
         ImageCarouselView(

@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.skydivers.hotelstest.R
+import com.skydivers.hotelstest.core.theme.design.views.chips.ChipsGridView
 import com.skydivers.hotelstest.ui.design.buttonList.ButtonsView
-import com.skydivers.hotelstest.ui.design.chips.ChipsGridView
+
 
 
 
@@ -30,11 +31,7 @@ class AboutHotelCard constructor(
     }
 
     fun addChips(chips: List<String>):AboutHotelCard{
-
-
-        LayoutInflater.from(parent.context
-        ).inflate(R.layout.chips_grid_layout, parent, true)
-        ChipsGridView(view,chips).init()
+        ChipsGridView(view,chips)
         return this
     }
 

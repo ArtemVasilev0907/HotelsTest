@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.skydivers.hotelstest.features.rooms.presentation.fragment.views.chips.ChipsGridView
-import com.skydivers.hotelstest.features.rooms.presentation.fragment.views.imageCarousel.ImageCarouselView
+import com.skydivers.hotelstest.core.theme.design.views.chips.ChipsGridView
+import com.skydivers.hotelstest.core.theme.design.views.imageCarousel.ImageCarouselView
+
 import com.skydivers.hotelstest.features.rooms.ui.R
 
 
@@ -48,10 +49,7 @@ class RoomsBaseCard constructor(
 
     fun addChips(chips: List<String>): RoomsBaseCard {
 
-
-        LayoutInflater.from(parent.context
-        ).inflate(R.layout.chips_grid_layout, parent, true)
-        ChipsGridView(view,chips).init()
+        ChipsGridView(view,chips)
         return this
     }
 

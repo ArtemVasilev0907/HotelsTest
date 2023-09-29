@@ -46,7 +46,7 @@ android {
 dependencies {
 
     implementation(project(":core"))
-    implementation(project(":core:theme"))
+
     implementation(project(":features:booking:domain"))
     implementation(project(":features:booking:model"))
     implementation(project(":features:booking:data"))

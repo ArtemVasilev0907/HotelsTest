@@ -1,18 +1,22 @@
 package com.skydivers.hotelstest.core.theme.design.views.chips
 
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
-import com.skydivers.theme.R
+import android.view.ViewGroup
+import com.skydivers.theme.databinding.ChipsGridLayoutBinding
 
 
 class ChipsGridView constructor(
     view: View,
-    private val chips: List<String>
+    chips: List<String>
 ) {
 
-    private val chipsRecycler = view.findViewById<RecyclerView>(R.id.rvChipsGrid)
-    fun init() {
-        chipsRecycler.adapter = ChipsAdapter(chips)
+    init {
+        val inflater = LayoutInflater.from(view.context)
+        val binding: ChipsGridLayoutBinding =
+            ChipsGridLayoutBinding.inflate(inflater, view as ViewGroup, false)
+        view.addView(binding.root)
+        binding.rvChipsGrid.adapter = ChipsAdapter(chips)
 
     }
 

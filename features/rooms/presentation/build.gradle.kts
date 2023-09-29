@@ -36,6 +36,7 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core:theme"))
 
     implementation(project(":features:rooms:domain"))
     implementation(project(":features:rooms:data"))
