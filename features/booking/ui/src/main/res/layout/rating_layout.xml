@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ratingLayout"
+    android:id="@+id/ll_rating"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/rating_rounded_background"
@@ -18,16 +18,16 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/HotelRatingTextView"
+        android:id="@+id/tvHotelRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="2dp"
         android:textColor="#FFA800"
-        android:textSize="16sp"></TextView>
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/HotelRatingDescriptionTextView"
+        android:id="@+id/tvHotelRatingDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -35,7 +35,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="@dimen/baseMargin"
         android:textColor="#FFA800"
-        android:textSize="16sp"></TextView>
+        android:textSize="16sp"/>
 
 
 </LinearLayout>

@@ -13,14 +13,16 @@ import com.skydivers.hotelstest.features.booking.ui.adapers.bindingExt.checkInfo
 import com.skydivers.hotelstest.features.booking.ui.databinding.BookingHotelItemBinding
 
 
+
 internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAction) -> Unit)? = null) :
     ViewBindingDelegateAdapter<BookingModel, BookingHotelItemBinding>(BookingHotelItemBinding::inflate) {
 
 
-    override fun BookingHotelItemBinding.onBind(item: com.skydivers.hotelstest.booking.model.BookingModel) {
+    override fun BookingHotelItemBinding.onBind(item: BookingModel) {
 
-        ratingLayout.HotelRatingTextView.text = item.horating.toString()
-        ratingLayout.HotelRatingDescriptionTextView.text = item.ratingName
+
+        llRating.tvHotelRating.text = item.horating.toString()
+        llRating.tvHotelRatingDescription.text = item.ratingName
         tvHotelName.text = item.hotelName
         tvHotelAddress.text = item.hotelAdress
         val touristDelegateAdapter = TouristDelegateAdapter()
@@ -31,7 +33,7 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
         touristDelegateAdapter.onUserAction = {
             val index = it as BookingUserAction.DeleteTourist
             onUserAction?.invoke(it)
-            adapter.swapDataAndRefresh(index.touristId,item.tourists!!)
+            adapter.swapDataAndRefresh(index.touristId,item.tourists)
             bookingCost.calculateData(
                 item.bookingPriceUIModel!!
             )
@@ -40,13 +42,14 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
 
         tourBlock.bindData(item)
 
-        buyer.bindData(item.buyerInfo!!)
+        buyer.bindData(item.buyerInfo,
+            onBuyerFormEvent = {onUserAction?.invoke(it)})
 
         addTourist.bindData(
             onUserAction = {
 
                 onUserAction?.invoke(it)
-                adapter.swapDataAndRefresh(item.tourists!!.size,item.tourists!!)
+                adapter.swapDataAndRefresh(item.tourists.size,item.tourists)
                 bookingCost.calculateData(
                     item.bookingPriceUIModel!!
                 )
@@ -94,9 +97,9 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
 
     }
 
-    override fun isForViewType(item: Any) = item is com.skydivers.hotelstest.booking.model.BookingModel
+    override fun isForViewType(item: Any) = item is BookingModel
 
-    override fun com.skydivers.hotelstest.booking.model.BookingModel.getItemId(): Any = id
+    override fun BookingModel.getItemId(): Any = id
     override fun checkRequires() = true
 
 

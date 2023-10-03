@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.skydivers.hotelstest.booking.model.BookingModel
+import com.skydivers.hotelstest.core.common.UiState
+import com.skydivers.hotelstest.core.common.observe
+import com.skydivers.hotelstest.core.theme.design.views.CornerFrameView
 import com.skydivers.hotelstest.features.booking.ui.adapers.BookingDelegateAdapter
-
+import com.skydivers.hotelstest.features.booking.ui.databinding.FragmentBookingBinding
 import com.skydivers.hotelstest.features.booking.ui.delegateAdaper.CompositeDelegateAdapter
 import com.skydivers.hotelstest.features.booking.ui.di.bookingModule
-import com.skydivers.hotelstest.core.common.UiState
-import com.skydivers.hotelstest.features.booking.ui.databinding.FragmentBookingBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -45,42 +46,33 @@ internal class BookingFragment : Fragment() {
         super.onCreate(savedInstanceState)
         injectFeatures()
 
-
-
-       lifecycleScope.launch {
-
-            bookingViewModel.fetchBookingData()
-        }
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
         _binding!!.lifecycleOwner = this
         lifecycleScope.launch {
+            val cornerFrameView = CornerFrameView(view = binding.root,
+                onReloadData = {
+                    bookingViewModel.fetchBookingData()
+                })
             bookingViewModel.uiState.collect { state ->
-                _binding!!.state = state
-                _binding!!.viewmodel = bookingViewModel
-                when (state) {
-                    is UiState.Success<BookingModel> -> {
-                        onSuccessUiState(state)
-                    }
+                cornerFrameView.observeState(state)
 
-                    is UiState.Error -> {
-                        onErrorUiState(state)
-                        _binding!!.error = state
+                state.observe(
+                    onLoading = {
+                        onLoading(it)
+                    },
+                    onSuccess = {
+                        onSuccessUiState(it)
+                    },
+                    onError = {
+                        onErrorUiState(it)
                     }
-
-                    is UiState.Loading -> {
-                        _binding!!.loading = state
-                    }
-
-                    else -> {}
-                }
+                )
             }
         }
         return binding.root
@@ -98,6 +90,10 @@ internal class BookingFragment : Fragment() {
 
     private fun onErrorUiState(state: UiState.Error) {
         Log.e(state::class.simpleName, state.exception.message.orEmpty())
+    }
+
+    private fun onLoading(state: UiState.Loading) {
+
     }
 
 

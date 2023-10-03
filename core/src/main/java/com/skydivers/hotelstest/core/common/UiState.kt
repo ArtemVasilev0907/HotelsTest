@@ -27,3 +27,20 @@ sealed class UiState<out T> {
         }
     }
 }
+suspend fun <T> UiState<T>.observe(
+    onLoading: (suspend (UiState.Loading)-> Unit)?= null,
+    onSuccess: (suspend (UiState.Success<T>)-> Unit)?= null,
+    onError: (suspend (UiState.Error)-> Unit)?= null) {
+
+    if (this is UiState.Error){
+        onError?.invoke(this)
+    }
+    if (this is UiState.Success){
+        onSuccess?.invoke(this)
+    }
+    if (this is UiState.Error){
+        onError?.invoke(this)
+    }
+}
+
+

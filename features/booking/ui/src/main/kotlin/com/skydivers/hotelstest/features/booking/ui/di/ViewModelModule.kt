@@ -18,6 +18,8 @@ internal val viewModelModule = module {
             getBookingDataUseCase = get(),
             addTouristUseCase = get(),
             deleteTouristUseCase = get(),
+            validatePhoneUseCase =get(),
+            validateEmailUseCase = get(),
             bookingNavigator = get()
         )
 

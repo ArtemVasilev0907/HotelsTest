@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">theme</string>
+    <string name="app_name" translatable="false">theme</string>
+    <string name="something_wrong_withe_connection">Something wrong withe connection</string>
 </resources>

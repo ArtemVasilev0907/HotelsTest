@@ -1,18 +1,18 @@
 package com.skydivers.hotelstest.features.rooms.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.skydivers.hotelstest.core.common.UiState
+import com.skydivers.hotelstest.core.common.observe
+import com.skydivers.hotelstest.core.theme.design.views.CornerFrameView
 import com.skydivers.hotelstest.features.rooms.presentation.di.roomsModule
-
 import com.skydivers.hotelstest.features.rooms.presentation.model.RoomsModel
 import com.skydivers.hotelstest.features.rooms.ui.R
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -28,7 +28,7 @@ class RoomFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       injectFeatures()
+        injectFeatures()
     }
 
     override fun onCreateView(
@@ -38,22 +38,24 @@ class RoomFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_room, container, false)
 
         activity?.title = arguments?.getString("hotelName").toString()
-        roomsViewModel.uiState.onEach { state ->
+        lifecycleScope.launch {
+            val cornerFrameView = CornerFrameView(view = view,
+                onReloadData = {
+                    roomsViewModel.fetchData()
+                })
+            roomsViewModel.uiState.collect { state ->
+                cornerFrameView.observeState(state)
 
-            when (state) {
-                is UiState.Success -> {
-                    onSuccessUiState(state, view)
-                }
-
-                is UiState.Error -> {
-                    onErrorUiState(state)
-                }
-
-                is UiState.Loading -> {
-
-                }
+                state.observe(
+                    onSuccess = {
+                        onSuccessUiState(it, view)
+                    },
+                    onError = {
+                        onErrorUiState(it)
+                    }
+                )
             }
-        }.launchIn(lifecycleScope)
+        }
         return view
     }
 
@@ -68,7 +70,7 @@ class RoomFragment : Fragment() {
     }
 
     private fun onErrorUiState(state: UiState.Error) {
-
+        Log.e(state::class.simpleName, state.exception.message.orEmpty())
     }
 
 }

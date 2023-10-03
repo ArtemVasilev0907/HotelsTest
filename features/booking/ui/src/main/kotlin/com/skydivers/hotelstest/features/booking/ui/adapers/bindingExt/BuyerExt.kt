@@ -6,7 +6,7 @@ import android.util.Patterns
 import com.skydivers.hotelstest.booking.model.BuyerInfoUIModel
 import com.skydivers.hotelstest.features.booking.ui.R
 import com.skydivers.hotelstest.features.booking.ui.databinding.BookingBuyerItemBinding
-
+import com.skydivers.hotelstest.features.booking.ui.repositories.BookingUserAction
 
 
 private var mailIsFilled = false
@@ -15,7 +15,10 @@ private val normalBackground = R.drawable.grey_rounded_background
 private val errorBackground = R.drawable.error_rounded_background
 
 
-internal fun BookingBuyerItemBinding.bindData(item: BuyerInfoUIModel) {
+internal fun BookingBuyerItemBinding.bindData(
+    item: BuyerInfoUIModel,
+    onBuyerFormEvent: ((BookingUserAction) -> Unit)? = null
+) {
     if (item.phone == null) {
         etPhone.setText("+7 (")
     } else {
@@ -26,7 +29,17 @@ internal fun BookingBuyerItemBinding.bindData(item: BuyerInfoUIModel) {
         item.phone = it
     }
     etPhone.onFocusChange {
-        phoneIsFilled()
+
+
+            onBuyerFormEvent?.invoke(BookingUserAction.ValidatePhone(item.phone.orEmpty()))
+
+
+        if (item.phoneError !=null){
+            etPhone.error = item.phoneError
+            phoneTextField.setBackgroundResource(errorBackground)
+        } else {
+            phoneTextField.setBackgroundResource(normalBackground)
+        }
     }
 
     etMail.setText(item.email)
@@ -36,7 +49,15 @@ internal fun BookingBuyerItemBinding.bindData(item: BuyerInfoUIModel) {
         item.email = it
     }
     etMail.onFocusChange {
-        mailIsFilled()
+        onBuyerFormEvent?.invoke(BookingUserAction.ValidateEmail(item.email.orEmpty()))
+
+
+        if (item.emailError !=null){
+            etMail.error = item.emailError
+            mailTextField.setBackgroundResource(errorBackground)
+        } else {
+            mailTextField.setBackgroundResource(normalBackground)
+        }
     }
 }
 

@@ -10,25 +10,23 @@ import kotlinx.coroutines.withContext
 
 class AddTouristUseCase() {
     suspend operator fun invoke( state: UiState.Success<BookingModel>): UiState.Success<BookingModel>{
-        state.data.let { booking ->
-            val tourists = booking.tourists?.toMutableList()
-            tourists?.map {
+        with(state){
+            val tourists = data.tourists.toMutableList()
+            tourists.map {
                 it.isCollapsed = false
             }
-
             runBlocking {
                 withContext(Dispatchers.IO){
-                    tourists?.add(
+                    tourists.add(
                         TouristUIModel()
                             .addNewFromList(tourists))
-                   // updateTourists(tourists!!)
-                    booking.bookingPriceUIModel?.multiple(tourists!!.size)
-                    booking.tourists = tourists
+                    // updateTourists(tourists!!)
+                    data.bookingPriceUIModel?.multiple(tourists.size)
+                    data.tourists = tourists
                 }
             }
-            return state
-
         }
+            return state
 
     }
 }

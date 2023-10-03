@@ -31,6 +31,11 @@ class RoomsViewModel(
         initialValue = UiState.Loading)
 
     init{
+
+        fetchData()
+    }
+
+    fun fetchData(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 getRoomsUseCase().collect{ roomsModelDomain ->
@@ -40,7 +45,6 @@ class RoomsViewModel(
                 }
             }
         }
-
     }
     fun toBooking(){
         roomsNavigator.toPayFragment()
