@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.skydivers.hotelstest.R
+import com.skydivers.hotelstest.core.theme.design.views.CornerFrameView
 import com.skydivers.hotelstest.databinding.FragmentHotelBinding
 import com.skydivers.hotelstest.models.UiState
 import com.skydivers.hotelstest.models.hotel.HotelsUiModel
@@ -44,9 +45,15 @@ class HotelFragment : Fragment() {
         val fragmentHotel = FragmentHotelBinding.inflate(inflater, container, false)
 
 
+        val cornerFrameView = CornerFrameView(
+            view = fragmentHotel.root,
+            onReloadData = { lifecycleScope.launch {
+                hotelViewModel.fetchHotelData()
 
+            }}
+        )
         hotelViewModel.uiState.onEach { state ->
-
+           //cornerFrameView.observeState(state)
             when (state) {
                 is UiState.Success -> {
                     onSuccessUiState(state,fragmentHotel )

@@ -47,6 +47,7 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":core:theme"))
+    implementation(project(":core:ui"))
 
     implementation(project(":features:booking:domain"))
     implementation(project(":features:booking:model"))

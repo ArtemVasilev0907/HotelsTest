@@ -28,3 +28,4 @@ include ':features:rooms:domain'
 include ':features:rooms:presentation'
 include ':core:theme'
 
+include ':core:ui'

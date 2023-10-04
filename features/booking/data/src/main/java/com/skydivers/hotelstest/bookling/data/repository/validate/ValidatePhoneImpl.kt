@@ -1,24 +1,24 @@
 package com.skydivers.hotelstest.bookling.data.repository.validate
 
-import com.skydivers.hotelstest.booking.domain.repository.ValidatePhoneRepository
-import com.skydivers.hotelstest.booking.domain.usecases.validation.ValidationResult
+import com.skydivers.hotelstest.features.booking.domain.repository.ValidatePhoneRepository
+import com.skydivers.hotelstest.features.booking.domain.usecases.validation.ValidationResultModel
 
 class ValidatePhoneImpl: ValidatePhoneRepository {
-    override fun validate(phone: String): ValidationResult {
+    override fun validate(phone: String): ValidationResultModel {
         if (phone.isBlank()){
-            return ValidationResult(
+            return ValidationResultModel(
                 successful = false,
                 errorMessage = "Укажите номер телефона !"
             )
         }
         if (phone.length != 18){
-            return ValidationResult(
+            return ValidationResultModel(
                 successful = false,
                 errorMessage = "Не верно заполнен номер телефона!!"
             )
         }
 
-        return ValidationResult(
+        return ValidationResultModel(
             successful = true
         )
     }

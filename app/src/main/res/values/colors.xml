@@ -16,10 +16,13 @@
   -->
 
 <resources>
-    <color name="colorPrimary">@color/cardview_light_background</color>
-    <color name="colorPrimaryDark">@color/cardview_light_background</color>
-    <color name="colorAccent">#7e53c5</color>
     <color name="black">#000000</color>
     <color name="colorSurface">#F6F6F9</color>
+    <color name="darkBlue">#0A53B9</color>
+    <color name="blue">#0D72FF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorAccent">@color/darkBlue</color>
 
 </resources>

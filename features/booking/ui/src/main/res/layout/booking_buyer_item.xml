@@ -28,14 +28,17 @@
         android:layout_marginEnd="@dimen/baseMargin"
         android:layout_marginBottom="@dimen/itemVerticalMargin"
         android:background="@drawable/grey_rounded_background"
+
         android:hint="@string/phone_number"
         app:hintTextColor="#000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
 
         android:textColor="#000000"
         android:padding="8dp"
         android:textSize="20sp">
 
-        <!--this is the actual edit text which takes the input-->
+
         <com.google.android.material.textfield.TextInputEditText
 
             android:id="@+id/etPhone"
@@ -43,8 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:prefixText="+7"
-
             android:maxLength="18"
+            android:textSize="20sp"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:background="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,9 +64,12 @@
         android:background="@drawable/grey_rounded_background"
         android:hint="@string/mail"
         app:hintTextColor="#000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         android:textColor="#000000"
         android:padding="8dp"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        >
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -70,6 +77,8 @@
             android:inputType="textEmailAddress|textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:background="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>

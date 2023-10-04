@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 val networkModule = module {
     single {
         HttpLoggingInterceptor() {
-            println("httpOk:$it")
+            println("StoreAPI:$it")
         }.setLevel(HttpLoggingInterceptor.Level.BODY)
     }
     single {

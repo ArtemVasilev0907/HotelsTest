@@ -35,7 +35,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":features:booking:model"))
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.koin.core)
     testImplementation(libs.junit4)
     androidTestImplementation(libs.junit)

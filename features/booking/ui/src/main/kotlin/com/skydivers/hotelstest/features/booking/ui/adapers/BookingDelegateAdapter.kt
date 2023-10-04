@@ -2,6 +2,7 @@ package com.skydivers.hotelstest.features.booking.ui.adapers
 
 
 import android.util.Log
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.skydivers.hotelstest.booking.model.BookingModel
 import com.skydivers.hotelstest.features.booking.ui.adapers.bindingExt.*
 import com.skydivers.hotelstest.features.booking.ui.repositories.BookingUserAction
@@ -28,6 +29,7 @@ internal class BookingDelegateAdapter(private var onUserAction: ((BookingUserAct
         val touristDelegateAdapter = TouristDelegateAdapter()
         val adapter = CompositeDelegateAdapter(touristDelegateAdapter)
         touristRv.adapter = adapter
+        (touristRv.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = true
 
 
         touristDelegateAdapter.onUserAction = {

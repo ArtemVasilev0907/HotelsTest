@@ -17,7 +17,7 @@ import com.skydivers.hotelstest.features.booking.ui.databinding.TouristItemBindi
 
 
 internal class TouristDelegateAdapter(var onUserAction: ((BookingUserAction) -> Unit)? = null) :
-    ViewBindingDelegateAdapter<com.skydivers.hotelstest.booking.model.TouristUIModel, TouristItemBinding>(TouristItemBinding::inflate) {
+    ViewBindingDelegateAdapter<TouristUIModel, TouristItemBinding>(TouristItemBinding::inflate) {
 
 
     private var bindingItems: TouristItemBinding? = null
@@ -149,8 +149,8 @@ internal class TouristDelegateAdapter(var onUserAction: ((BookingUserAction) -> 
         popupMenu.show()
     }
 
-    override fun isForViewType(item: Any) = item is com.skydivers.hotelstest.booking.model.TouristUIModel
+    override fun isForViewType(item: Any) = item is TouristUIModel
 
-    override fun com.skydivers.hotelstest.booking.model.TouristUIModel.getItemId(): Any = id
+    override fun TouristUIModel.getItemId(): Any = id
 
 }

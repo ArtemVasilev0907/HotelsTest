@@ -55,23 +55,17 @@ internal class BookingFragment : Fragment() {
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
         _binding!!.lifecycleOwner = this
         lifecycleScope.launch {
-            val cornerFrameView = CornerFrameView(view = binding.root,
-                onReloadData = {
-                    bookingViewModel.fetchBookingData()
-                })
+            val cornerFrameView = CornerFrameView(
+                view = binding.root,
+                onReloadData = bookingViewModel::fetchBookingData
+                )
             bookingViewModel.uiState.collect { state ->
                 cornerFrameView.observeState(state)
 
                 state.observe(
-                    onLoading = {
-                        onLoading(it)
-                    },
-                    onSuccess = {
-                        onSuccessUiState(it)
-                    },
-                    onError = {
-                        onErrorUiState(it)
-                    }
+                    onLoading = ::onLoading,
+                    onSuccess = ::onSuccessUiState,
+                    onError =::onErrorUiState
                 )
             }
         }

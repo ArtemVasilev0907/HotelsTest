@@ -5,7 +5,7 @@ import java.lang.Exception
 
 sealed class UiState<out T> {
     abstract suspend fun <R> suspendMap(mapper: (suspend (T) -> R)? = null): UiState<R>
-    object Loading : UiState<Nothing>() {
+    data object Loading : UiState<Nothing>() {
         override suspend fun <R> suspendMap(mapper: (suspend (Nothing) -> R)?): UiState<R> {
             return this
         }
@@ -38,8 +38,8 @@ suspend fun <T> UiState<T>.observe(
     if (this is UiState.Success){
         onSuccess?.invoke(this)
     }
-    if (this is UiState.Error){
-        onError?.invoke(this)
+    if (this is UiState.Loading){
+        onLoading?.invoke(this)
     }
 }
 

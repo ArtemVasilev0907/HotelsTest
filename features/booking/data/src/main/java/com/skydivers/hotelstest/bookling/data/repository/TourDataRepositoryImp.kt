@@ -1,6 +1,6 @@
 package com.skydivers.hotelstest.bookling.data.repository
 
-import com.skydivers.hotelstest.booking.domain.repository.TourDataRepository
+import com.skydivers.hotelstest.features.booking.domain.repository.TourDataRepository
 import com.skydivers.hotelstest.booking.model.BookingModel
 import com.skydivers.hotelstest.bookling.data.entities.TourEntity
 import com.skydivers.hotelstest.bookling.data.service.BookingService
@@ -39,16 +39,16 @@ internal class TourDataRepositoryImp(
     private fun setState(
         response: Response<TourEntity>
     ): UiState<TourEntity> {
-        var uiState: UiState<TourEntity> = UiState.Loading
-        try {
+        val uiState: UiState<TourEntity> = try {
 
             if (response.code() == 200) {
-                uiState = UiState.Success(response.body()!!)
+                UiState.Success(response.body()!!)
+            } else {
+                val e = IllegalArgumentException("code < 400: ${response.code()}")
+                UiState.Error(e)
             }
         } catch (e: Exception) {
-            UiState.Error(
-                e
-            )
+            UiState.Error(e)
 
         }
 

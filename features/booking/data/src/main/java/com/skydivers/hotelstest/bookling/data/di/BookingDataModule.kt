@@ -3,9 +3,9 @@ package com.skydivers.hotelstest.bookling.data.di
 
 
 
-import com.skydivers.hotelstest.booking.domain.repository.TourDataRepository
-import com.skydivers.hotelstest.booking.domain.repository.ValidateEmailRepository
-import com.skydivers.hotelstest.booking.domain.repository.ValidatePhoneRepository
+import com.skydivers.hotelstest.features.booking.domain.repository.TourDataRepository
+import com.skydivers.hotelstest.features.booking.domain.repository.ValidateEmailRepository
+import com.skydivers.hotelstest.features.booking.domain.repository.ValidatePhoneRepository
 import com.skydivers.hotelstest.bookling.data.repository.TourDataRepositoryImp
 import com.skydivers.hotelstest.bookling.data.repository.validate.ValidateEmailImpl
 import com.skydivers.hotelstest.bookling.data.repository.validate.ValidatePhoneImpl

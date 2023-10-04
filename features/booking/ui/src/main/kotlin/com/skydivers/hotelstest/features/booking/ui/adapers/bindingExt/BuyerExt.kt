@@ -19,6 +19,8 @@ internal fun BookingBuyerItemBinding.bindData(
     item: BuyerInfoUIModel,
     onBuyerFormEvent: ((BookingUserAction) -> Unit)? = null
 ) {
+
+    etPhone.textCursorDrawable
     if (item.phone == null) {
         etPhone.setText("+7 (")
     } else {
