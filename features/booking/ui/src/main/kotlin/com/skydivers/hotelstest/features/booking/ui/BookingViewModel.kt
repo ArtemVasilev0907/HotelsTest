@@ -1,11 +1,11 @@
 package com.skydivers.hotelstest.features.booking.ui
 
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydivers.hotelstest.booking.model.BookingModel
 import com.skydivers.hotelstest.core.common.UiState
 import com.skydivers.hotelstest.core.common.observe
-import com.skydivers.hotelstest.core.ui.lyfecycles.BaseViewModel
 import com.skydivers.hotelstest.features.booking.domain.usecases.AddTouristUseCase
 import com.skydivers.hotelstest.features.booking.domain.usecases.DeleteTouristUseCase
 import com.skydivers.hotelstest.features.booking.domain.usecases.GetBookingDataUseCase
@@ -28,7 +28,7 @@ internal class BookingViewModel(
     val validateEmailUseCase: ValidateEmailUseCase,
     val validatePhoneUseCase: ValidatePhoneUseCase,
     private val bookingNavigator: BookingNavigator
-) : BaseViewModel() {
+) : ViewModel() {
 
 
     private val _uiState = MutableStateFlow<UiState<BookingModel>>(UiState.Loading)
@@ -44,12 +44,17 @@ internal class BookingViewModel(
 
 
     fun fetchBookingData() {
-        launchInIO {
+
+
+        viewModelScope.launch {
             _uiState.update { UiState.Loading }
             getBookingDataUseCase().collectLatest { state ->
-                _uiState.emit(state)
+
+                _uiState.update { state }
             }
         }
+
+
 
     }
 
@@ -59,6 +64,7 @@ internal class BookingViewModel(
 
             when (action) {
                 is BookingUserAction.AddTourist -> {
+
                     uiState.value.observe(
                         onSuccess = { state ->
                             _uiState.update {
@@ -69,9 +75,12 @@ internal class BookingViewModel(
                 }
 
                 is BookingUserAction.DeleteTourist -> {
+
+
                     uiState.value.observe(
                         onSuccess = { state ->
                             _uiState.update {
+
                                 deleteTouristUseCase(state, action.touristId)
                             }
                         }

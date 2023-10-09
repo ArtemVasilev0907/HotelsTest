@@ -31,10 +31,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+
+    }
+
+    dataBinding {
+
+        this.enable = true
+
+    }
 }
 
 dependencies {
 
+    implementation(project(":core"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.bundles.lifecycle)
     testImplementation(libs.junit4)

@@ -7,6 +7,7 @@ data class TouristUIModel(
 
     @SerializedName("id")
     var id: Int = 1,
+    var hotelId: Int = 0,
     @SerializedName("title")
     var title: String = "",
     @SerializedName("first_name")
@@ -25,19 +26,22 @@ data class TouristUIModel(
 
 ) {
     private fun digitsToText(digit: Int): String = convertToText(digit.toLong())
-    fun addNewFromList(tourists: MutableList<TouristUIModel>): TouristUIModel {
+    companion object{
+        fun TouristUIModel.setNewId(index: Int) {
+            var newId = index
+            newId++
+            id = newId
+            this.title = convertToText(newId.toLong())
+        }
+        fun TouristUIModel.addNewFromList(tourists: MutableList<TouristUIModel>): TouristUIModel {
 
-        val newId = tourists.size +1
-        val title = digitsToText(newId)
-        return TouristUIModel(id = newId, title = title)
+            val newId = tourists.size +1
+            val title = convertToText(newId.toLong())
+            return TouristUIModel(id = newId, title = title)
+        }
     }
 
-    fun setNewId(index: Int) {
-        var newId = index
-        newId++
-        id = newId
-        this.title = digitsToText(newId)
-    }
+
 
     fun isFilled(): Boolean {
 
@@ -55,6 +59,8 @@ data class TouristUIModel(
 
 
 }
+
+
 
 
 

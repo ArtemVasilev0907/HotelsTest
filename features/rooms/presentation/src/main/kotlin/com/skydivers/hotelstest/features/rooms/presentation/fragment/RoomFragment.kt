@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.skydivers.hotelstest.core.common.UiState
 import com.skydivers.hotelstest.core.common.observe
-import com.skydivers.hotelstest.core.theme.design.views.CornerFrameView
 import com.skydivers.hotelstest.features.rooms.presentation.di.roomsModule
 import com.skydivers.hotelstest.features.rooms.presentation.model.RoomsModel
-import com.skydivers.hotelstest.features.rooms.ui.R
+import com.skydivers.hotelstest.features.rooms.ui.databinding.FragmentRoomBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -26,6 +25,10 @@ class RoomFragment : Fragment() {
 
     private fun injectFeatures() = loadModules
 
+    private var _binding: FragmentRoomBinding? = null
+    private val binding: FragmentRoomBinding
+        get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectFeatures()
@@ -35,20 +38,20 @@ class RoomFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_room, container, false)
+
+        _binding = FragmentRoomBinding.inflate(inflater, container, false)
 
         activity?.title = arguments?.getString("hotelName").toString()
+
         lifecycleScope.launch {
-            val cornerFrameView = CornerFrameView(view = view,
-                onReloadData = {
-                    roomsViewModel.fetchData()
-                })
+
             roomsViewModel.uiState.collect { state ->
-                cornerFrameView.observeState(state)
+                binding.root.state = state
+
 
                 state.observe(
                     onSuccess = {
-                        onSuccessUiState(it, view)
+                        onSuccessUiState(it, binding.root)
                     },
                     onError = {
                         onErrorUiState(it)
@@ -56,7 +59,7 @@ class RoomFragment : Fragment() {
                 )
             }
         }
-        return view
+        return binding.root
     }
 
     private fun onSuccessUiState(state: UiState.Success<RoomsModel>, view: View) {
@@ -71,6 +74,9 @@ class RoomFragment : Fragment() {
 
     private fun onErrorUiState(state: UiState.Error) {
         Log.e(state::class.simpleName, state.exception.message.orEmpty())
+        binding.root.onReload = {
+            roomsViewModel.fetchData()
+        }
     }
 
 }

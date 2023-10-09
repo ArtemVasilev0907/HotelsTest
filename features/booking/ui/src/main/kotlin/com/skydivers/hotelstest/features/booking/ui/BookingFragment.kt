@@ -10,12 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import com.skydivers.hotelstest.booking.model.BookingModel
 import com.skydivers.hotelstest.core.common.UiState
 import com.skydivers.hotelstest.core.common.observe
-import com.skydivers.hotelstest.core.theme.design.views.CornerFrameView
 import com.skydivers.hotelstest.features.booking.ui.adapers.BookingDelegateAdapter
 import com.skydivers.hotelstest.features.booking.ui.databinding.FragmentBookingBinding
 import com.skydivers.hotelstest.features.booking.ui.delegateAdaper.CompositeDelegateAdapter
 import com.skydivers.hotelstest.features.booking.ui.di.bookingModule
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
@@ -53,22 +53,19 @@ internal class BookingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
-        _binding!!.lifecycleOwner = this
-        lifecycleScope.launch {
-            val cornerFrameView = CornerFrameView(
-                view = binding.root,
-                onReloadData = bookingViewModel::fetchBookingData
-                )
-            bookingViewModel.uiState.collect { state ->
-                cornerFrameView.observeState(state)
 
-                state.observe(
-                    onLoading = ::onLoading,
-                    onSuccess = ::onSuccessUiState,
-                    onError =::onErrorUiState
-                )
-            }
-        }
+
+
+        bookingViewModel.uiState.onEach { state ->
+            binding.root.state = state
+
+            state.observe(
+                onLoading = { onLoading() },
+                onSuccess = ::onSuccessUiState,
+                onError = ::onErrorUiState
+            )
+        }.launchIn(lifecycleScope)
+
         return binding.root
     }
 
@@ -86,8 +83,10 @@ internal class BookingFragment : Fragment() {
         Log.e(state::class.simpleName, state.exception.message.orEmpty())
     }
 
-    private fun onLoading(state: UiState.Loading) {
-
+    private fun onLoading() {
+        binding.root.onReload = {
+            bookingViewModel.fetchBookingData()
+        }
     }
 
 

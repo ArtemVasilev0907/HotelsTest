@@ -1,6 +1,6 @@
-package com.skydivers.hotelstest.network.di
+package com.skydivers.hotelstest.core.network.di
 
-import com.skydivers.hotelstest.network.BASE_URL
+import com.skydivers.hotelstest.core.network.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

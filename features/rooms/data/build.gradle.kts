@@ -36,13 +36,14 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core:retrofit"))
     implementation(project(":features:rooms:domain"))
 
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.koin.core)
-    implementation(libs.converter.gson)
+
     testImplementation(libs.junit4)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)

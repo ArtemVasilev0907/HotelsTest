@@ -54,7 +54,7 @@ dependencies {
     implementation project (path: ':core')
     implementation project (path: ':core:theme')
 
-    implementation project(path: ':retrofit')
+    implementation project(path: ':core:retrofit')
 
 
     implementation libs.androidx.core.ktx

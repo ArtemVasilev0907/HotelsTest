@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.skydivers.hotelstest.network"
+    namespace = "com.skydivers.hotelstest.core.network"
     compileSdk = ProjectProps.compileSdk
 
     defaultConfig {
@@ -35,7 +35,9 @@ android {
 dependencies {
 
     implementation(libs.koin.core)
-    implementation(libs.bundles.retrofit)
+    api(libs.bundles.retrofit)
+    api(libs.converter.gson)
+    implementation(project(":core"))
 
     
     testImplementation(libs.junit4)

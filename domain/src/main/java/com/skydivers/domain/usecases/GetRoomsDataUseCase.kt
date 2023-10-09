@@ -13,7 +13,10 @@ class GetRoomsDataUseCase (private val hotelsDataRepository: HotelsDataRepositor
 
     }
 
-    override suspend fun executeOnBackground(): Flow<DataState<RoomsModelDomain>> {
-        return hotelsDataRepository.fetchRoomsDataState()
-    }
+    override suspend fun executeOnBackground(): Flow<DataState<RoomsModelDomain>>  =
+        backgroundAsync {
+            return@backgroundAsync hotelsDataRepository.fetchRoomsDataState()
+        }.await()
+
+
 }

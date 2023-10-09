@@ -3,6 +3,7 @@ package com.skydivers.hotelstest.features.booking.domain.usecases
 
 import com.skydivers.hotelstest.booking.model.BookingModel
 import com.skydivers.hotelstest.booking.model.TouristUIModel
+import com.skydivers.hotelstest.booking.model.TouristUIModel.Companion.setNewId
 import com.skydivers.hotelstest.core.common.UiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -18,6 +19,7 @@ class DeleteTouristUseCase() {
                         tourists.indexOfFirst { it.id == index }.let {
                             tourists.removeAt(it)
                         }
+
                         updateTourists(tourists, index)
                         booking.bookingPriceUIModel?.multiple(tourists.size)
                         booking.tourists = tourists

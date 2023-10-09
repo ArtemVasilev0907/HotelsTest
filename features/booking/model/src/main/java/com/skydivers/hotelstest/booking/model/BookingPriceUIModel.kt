@@ -6,6 +6,7 @@ data class BookingPriceUIModel(
     var serviceCharge: Int,
     var fuelCharge: Int
 ) {
+
     private val initTourPrice: Int = tourPrice
     private val intServiceCharge: Int = serviceCharge
     private val intFuelCharge: Int = fuelCharge

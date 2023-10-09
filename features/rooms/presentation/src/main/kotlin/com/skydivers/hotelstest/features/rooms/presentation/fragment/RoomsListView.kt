@@ -3,6 +3,7 @@ package com.skydivers.hotelstest.features.rooms.presentation.fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.skydivers.hotelstest.features.rooms.presentation.model.RoomModel
@@ -18,7 +19,7 @@ class RoomsListView constructor(
 ) {
 
     private val parent: ViewGroup = view.findViewById<LinearLayout>(R.id.roomsBaseLayout)
-    private val rl =  view.findViewById<LinearLayout>(R.id.roomsBaseLayout).removeAllViews()
+    private val rl =  view.findViewById<FrameLayout>(R.id.roomsBaseLayout).removeAllViews()
     private var onSelectRoom: ((value: Int) -> Unit)? = null
 
     fun show() {

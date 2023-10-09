@@ -16,8 +16,12 @@ rootProject.name = "HotelsTest"
 include ':app'
 include ':domain'
 include ':data'
-include ':retrofit'
+
 include ':core'
+include ':core:theme'
+include ':core:ui'
+include ':core:retrofit'
+
 include ':features:booking:model'
 include ':features:booking:domain'
 include ':features:booking:data'
@@ -26,6 +30,4 @@ include ':features:rooms'
 include ':features:rooms:data'
 include ':features:rooms:domain'
 include ':features:rooms:presentation'
-include ':core:theme'
 
-include ':core:ui'

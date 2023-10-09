@@ -18,8 +18,7 @@ data class BookingModel(
     val tourDateStop: String,
     val tourPrice: Int,
     var tourists: MutableList<TouristUIModel> = mutableListOf(),
-    var buyerInfo: BuyerInfoUIModel = BuyerInfoUIModel(),
-
+    val buyerInfo: BuyerInfoUIModel = BuyerInfoUIModel ,
     var bookingPriceUIModel: BookingPriceUIModel?=null
 ) {
     fun mapToPresentation(): BookingModel =
@@ -39,8 +38,7 @@ data class BookingModel(
             tourDateStart,
             tourDateStop,
             tourPrice,
-            bookingPriceUIModel = createPriceModel(),
-            buyerInfo = BuyerInfoUIModel()
+            bookingPriceUIModel = createPriceModel()
         )
 
 

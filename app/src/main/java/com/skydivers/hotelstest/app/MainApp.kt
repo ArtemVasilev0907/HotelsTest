@@ -6,7 +6,7 @@ import com.skydivers.hotelstest.di.CoreModule
 import com.skydivers.hotelstest.di.appModule
 import com.skydivers.hotelstest.di.dataModule
 import com.skydivers.hotelstest.di.domainModule
-import com.skydivers.hotelstest.network.di.networkModule
+import com.skydivers.hotelstest.core.network.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

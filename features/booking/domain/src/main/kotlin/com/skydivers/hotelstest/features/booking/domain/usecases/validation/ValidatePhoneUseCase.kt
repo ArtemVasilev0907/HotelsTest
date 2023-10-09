@@ -18,10 +18,12 @@ class ValidatePhoneUseCase(private val validatePhoneRepository: ValidatePhoneRep
             runBlocking {
                 withContext(Dispatchers.IO) {
                     data.buyerInfo.phoneError = validatePhoneRepository.validate(phone).errorMessage
+
                 }
             }
+            return state
         }
-        return state
+
 
     }
 

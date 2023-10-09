@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.skydivers.hotelstest.core.theme.design.views.StateFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/roomsBaseLayout"
@@ -11,4 +11,4 @@
 
 
 
-</LinearLayout>
+</com.skydivers.hotelstest.core.theme.design.views.StateFrameLayout>

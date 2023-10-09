@@ -39,12 +39,13 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":features:booking:domain"))
     implementation(project(":features:booking:model"))
+    implementation(project(":core:retrofit"))
 
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.koin.core)
-    implementation(libs.converter.gson)
+
 
     testImplementation(libs.junit4)
     androidTestImplementation(libs.junit)
